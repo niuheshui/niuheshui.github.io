@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on niuheshui-blog</title>
+    <link>https://niuheshui.github.io/blog/</link>
+    <description>Recent content in Blogs on niuheshui-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 04 Aug 2023 23:18:31 -0700</lastBuildDate>
+    
+	<atom:link href="https://niuheshui.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>One</title>
+      <link>https://niuheshui.github.io/blog/ont/</link>
+      <pubDate>Fri, 04 Aug 2023 23:18:31 -0700</pubDate>
+      
+      <guid>https://niuheshui.github.io/blog/ont/</guid>
+      <description>第一篇博客 测试 hhh</description>
+    </item>
+    
+  </channel>
+</rss>
