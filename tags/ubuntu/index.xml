@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ubuntu on niuheshui-blog</title>
+    <link>https://niuheshui.github.io/tags/ubuntu/</link>
+    <description>Recent content in ubuntu on niuheshui-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 05 Aug 2023 03:13:01 -0700</lastBuildDate>
+    
+	<atom:link href="https://niuheshui.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu To Go</title>
+      <link>https://niuheshui.github.io/blog/ubuntu_togo/</link>
+      <pubDate>Sat, 05 Aug 2023 03:13:01 -0700</pubDate>
+      
+      <guid>https://niuheshui.github.io/blog/ubuntu_togo/</guid>
+      <description>&lt;p&gt;Ubuntu To Go: 将Ubuntu系统装入U盘, 可以随身携带的一个操作系统.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,7 +6,7 @@
     <description>Recent content in Tags on niuheshui-blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 05 Aug 2023 02:10:20 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 05 Aug 2023 03:13:01 -0700</lastBuildDate>
     
 	<atom:link href="https://niuheshui.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>Linux</title>
       <link>https://niuheshui.github.io/tags/linux/</link>
-      <pubDate>Sat, 05 Aug 2023 02:10:20 -0700</pubDate>
+      <pubDate>Sat, 05 Aug 2023 03:13:01 -0700</pubDate>
       
       <guid>https://niuheshui.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://niuheshui.github.io/tags/ubuntu/</link>
+      <pubDate>Sat, 05 Aug 2023 03:13:01 -0700</pubDate>
+      
+      <guid>https://niuheshui.github.io/tags/ubuntu/</guid>
       <description></description>
     </item>
     
