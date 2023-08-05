@@ -6,9 +6,28 @@
     <description>Recent content in Categories on niuheshui-blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
+    <lastBuildDate>Sat, 05 Aug 2023 00:56:15 -0700</lastBuildDate>
     
 	<atom:link href="https://niuheshui.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linux</title>
+      <link>https://niuheshui.github.io/categories/linux/</link>
+      <pubDate>Sat, 05 Aug 2023 00:56:15 -0700</pubDate>
+      
+      <guid>https://niuheshui.github.io/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySQL</title>
+      <link>https://niuheshui.github.io/categories/mysql/</link>
+      <pubDate>Sat, 05 Aug 2023 00:56:15 -0700</pubDate>
+      
+      <guid>https://niuheshui.github.io/categories/mysql/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

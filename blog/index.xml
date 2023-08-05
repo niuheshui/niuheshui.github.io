@@ -6,17 +6,39 @@
     <description>Recent content in Blogs on niuheshui-blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 04 Aug 2023 23:18:31 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 05 Aug 2023 02:10:20 -0700</lastBuildDate>
     
 	<atom:link href="https://niuheshui.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>ANSI控制字符</title>
+      <link>https://niuheshui.github.io/blog/linux_ansi_code/</link>
+      <pubDate>Sat, 05 Aug 2023 02:10:20 -0700</pubDate>
+      
+      <guid>https://niuheshui.github.io/blog/linux_ansi_code/</guid>
+      <description>&lt;p&gt;什么是ANSI控制字符&lt;/p&gt;
+&lt;p&gt;ANSI控制字符是一组特殊的字符序列，用于在文本终端上执行各种控制操作。这些字符以Escape字符（ASCII码为27）开头，并由一系列特定的字符组成。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;简单来说就是控制linux终端上的字符显示&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux安装MySQL-8.0.30(二进制压缩包安装)</title>
+      <link>https://niuheshui.github.io/blog/mysql-aa/</link>
+      <pubDate>Sat, 05 Aug 2023 00:56:15 -0700</pubDate>
+      
+      <guid>https://niuheshui.github.io/blog/mysql-aa/</guid>
+      <description>&lt;p&gt;使用二进制压缩包在linux上安装mysql&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>One</title>
-      <link>https://niuheshui.github.io/blog/ont/</link>
+      <link>https://niuheshui.github.io/blog/one/</link>
       <pubDate>Fri, 04 Aug 2023 23:18:31 -0700</pubDate>
       
-      <guid>https://niuheshui.github.io/blog/ont/</guid>
+      <guid>https://niuheshui.github.io/blog/one/</guid>
       <description>第一篇博客 测试 hhh</description>
     </item>
     
