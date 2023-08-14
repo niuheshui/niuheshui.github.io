@@ -6,15 +6,20 @@
     <description>Recent content in Categories on niuheshui-blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 05 Aug 2023 00:56:15 -0700</lastBuildDate>
-    
-	<atom:link href="https://niuheshui.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Tue, 15 Aug 2023 01:18:53 +0800</lastBuildDate><atom:link href="https://niuheshui.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>dotfiles</title>
+      <link>https://niuheshui.github.io/categories/dotfiles/</link>
+      <pubDate>Tue, 15 Aug 2023 01:18:53 +0800</pubDate>
+      
+      <guid>https://niuheshui.github.io/categories/dotfiles/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Linux</title>
       <link>https://niuheshui.github.io/categories/linux/</link>
-      <pubDate>Sat, 05 Aug 2023 00:56:15 -0700</pubDate>
+      <pubDate>Tue, 15 Aug 2023 01:18:53 +0800</pubDate>
       
       <guid>https://niuheshui.github.io/categories/linux/</guid>
       <description></description>

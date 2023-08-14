@@ -16,7 +16,7 @@
     
   },
   "name":"niuheshui-blog",
-  "description":"\x3cp\x3e将Ubuntu系统装入U盘, 可以随身携带的一个操作系统.\x3cbr\x3e\n使用Ubuntu20.04 LTS \x2b 64G U盘制作 UEFI \x2b BIOS 双启动方式的U to go.\x3c\/p\x3e",
+  "description":"\u003cp\u003e将Ubuntu系统装入U盘, 可以随身携带的一个操作系统.\u003cbr\u003e\n使用Ubuntu20.04 LTS \u002b 64G U盘制作 UEFI \u002b BIOS 双启动方式的U to go.\u003c\/p\u003e",
   "url":"https:\/\/niuheshui.github.io\/blog\/ubuntu_togo\/",
   "keywords":"[]"
 }
@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.68.3 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.92.2 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="niuheshui">
 <meta name="keywords" content="">
 <meta name="description" content="将Ubuntu系统装入U盘, 可以随身携带的一个操作系统.
@@ -319,23 +319,23 @@
 </li>
 <li>
 <p>设置bios_grub标记  最后剩1M就行</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">hadoop@ubuntu:~$ sudo gdisk /dev/sda
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">hadoop@ubuntu:~$ sudo gdisk /dev/sda
 GPT fdisk <span style="color:#f92672">(</span>gdisk<span style="color:#f92672">)</span> version 1.0.5
-      
+
 Partition table scan:
   MBR: MBR only
   BSD: not present
   APM: not present
   GPT: not present
-      
-      
+
+
 ***************************************************************
 Found invalid GPT and valid MBR; converting MBR to GPT format
 in memory. THIS OPERATION IS POTENTIALLY DESTRUCTIVE! Exit by
 typing <span style="color:#e6db74">&#39;q&#39;</span> <span style="color:#66d9ef">if</span> you don<span style="color:#e6db74">&#39;t want to convert your MBR partitions
 </span><span style="color:#e6db74">to GPT format!
 </span><span style="color:#e6db74">***************************************************************
-</span><span style="color:#e6db74">      
+</span><span style="color:#e6db74">
 </span><span style="color:#e6db74">Command (? for help): n
 </span><span style="color:#e6db74">Partition number (3-128, default 3): 
 </span><span style="color:#e6db74">First sector (34-104857566, default = 104855552) or {+-}size{KMGTP}: 
@@ -343,7 +343,7 @@ typing <span style="color:#e6db74">&#39;q&#39;</span> <span style="color:#66d9ef
 </span><span style="color:#e6db74">Current type is 8300 (Linux filesystem)
 </span><span style="color:#e6db74">Hex code or GUID (L to show codes, Enter = 8300): EF02
 </span><span style="color:#e6db74">Changed type of partition to &#39;</span>BIOS boot partition<span style="color:#960050;background-color:#1e0010">&#39;</span>
-      
+
 Command <span style="color:#f92672">(</span>? <span style="color:#66d9ef">for</span> help<span style="color:#f92672">)</span>: p
 Disk /dev/sda: <span style="color:#ae81ff">104857600</span> sectors, 50.0 GiB
 Model: VMware Virtual S
@@ -354,25 +354,25 @@ Main partition table begins at sector <span style="color:#ae81ff">2</span> and e
 First usable sector is 34, last usable sector is <span style="color:#ae81ff">104857566</span>
 Partitions will be aligned on 2048-sector boundaries
 Total free space is <span style="color:#ae81ff">2014</span> sectors <span style="color:#f92672">(</span>1007.0 KiB<span style="color:#f92672">)</span>
-      
+
 Number  Start <span style="color:#f92672">(</span>sector<span style="color:#f92672">)</span>    End <span style="color:#f92672">(</span>sector<span style="color:#f92672">)</span>  Size       Code  Name
    <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">2048</span>         <span style="color:#ae81ff">1050623</span>   512.0 MiB   <span style="color:#ae81ff">0700</span>  Microsoft basic data
    <span style="color:#ae81ff">2</span>         <span style="color:#ae81ff">1050624</span>         <span style="color:#ae81ff">1052671</span>   1024.0 KiB  <span style="color:#ae81ff">8300</span>  Linux filesystem
    <span style="color:#ae81ff">3</span>       <span style="color:#ae81ff">104855552</span>       <span style="color:#ae81ff">104857566</span>   1007.5 KiB  EF02  BIOS boot partition
    <span style="color:#ae81ff">5</span>         <span style="color:#ae81ff">1052672</span>       <span style="color:#ae81ff">104855551</span>   49.5 GiB    <span style="color:#ae81ff">8300</span>  Linux filesystem
-      
+
 Command <span style="color:#f92672">(</span>? <span style="color:#66d9ef">for</span> help<span style="color:#f92672">)</span>: w
-      
+
 Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
 PARTITIONS!!
-      
+
 Do you want to proceed? <span style="color:#f92672">(</span>Y/N<span style="color:#f92672">)</span>: y
 OK; writing new GUID partition table <span style="color:#f92672">(</span>GPT<span style="color:#f92672">)</span> to /dev/sda.
 Warning: The kernel is still using the old partition table.
 The new table will be used at the next reboot or after you
 run partprobe<span style="color:#f92672">(</span>8<span style="color:#f92672">)</span> or kpartx<span style="color:#f92672">(</span>8<span style="color:#f92672">)</span>
 The operation has completed successfully.
-      
+
 </code></pre></div></li>
 </ol>
 </li>
@@ -390,10 +390,10 @@ The operation has completed successfully.
 </li>
 <li>
 <p>终端</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#e6db74">&#34; 系统挂载分区/dev/sda1
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#e6db74">&#34; 系统挂载分区/dev/sda1
 </span><span style="color:#e6db74"></span>$<span style="color:#e6db74"> sudo mount /dev/sda1 /mnt
 </span><span style="color:#e6db74"></span>$<span style="color:#e6db74"> sudo grub-install --target=i386-pc --recheck --boot-directory=/mnt/boot /dev/sda
-</span><span style="color:#e6db74">      
+</span><span style="color:#e6db74">
 </span><span style="color:#e6db74">heck --boot-directory=/mnt/boot /dev/sda
 </span><span style="color:#e6db74">Installing for i386-pc platform.
 </span><span style="color:#e6db74">Installation finished. No error reported.
@@ -403,7 +403,7 @@ The operation has completed successfully.
 </li>
 <li>
 <p>查看启动方式:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># [ -d /sys/firmware/efi ] &amp;&amp; echo UEFI || echo BIOS</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># [ -d /sys/firmware/efi ] &amp;&amp; echo UEFI || echo BIOS</span>
 </code></pre></div></li>
 </ol>
 <h2 id="参考">参考</h2>
@@ -436,7 +436,7 @@ The operation has completed successfully.
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://niuheshui.github.io/blog/dotfiles/" data-tooltip="Dotfiles&#43;Git" aria-label="下一篇: Dotfiles&#43;Git">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -543,7 +543,7 @@ The operation has completed successfully.
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://niuheshui.github.io/blog/dotfiles/" data-tooltip="Dotfiles&#43;Git" aria-label="下一篇: Dotfiles&#43;Git">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>

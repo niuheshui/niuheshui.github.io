@@ -6,10 +6,15 @@
     <description>Recent content on niuheshui-blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 05 Aug 2023 03:13:01 -0700</lastBuildDate>
-    
-	<atom:link href="https://niuheshui.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Tue, 15 Aug 2023 01:18:53 +0800</lastBuildDate><atom:link href="https://niuheshui.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dotfiles&#43;Git</title>
+      <link>https://niuheshui.github.io/blog/dotfiles/</link>
+      <pubDate>Tue, 15 Aug 2023 01:18:53 +0800</pubDate>
+      
+      <guid>https://niuheshui.github.io/blog/dotfiles/</guid>
+      <description>&lt;p&gt;使用git管理dotfiles, 简化配置.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Ubuntu To Go</title>

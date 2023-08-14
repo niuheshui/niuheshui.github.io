@@ -16,7 +16,7 @@
     
   },
   "name":"niuheshui-blog",
-  "description":"\x3cp\x3e使用二进制压缩包在linux上安装mysql\x3c\/p\x3e",
+  "description":"\u003cp\u003e使用二进制压缩包在linux上安装mysql\u003c\/p\u003e",
   "url":"https:\/\/niuheshui.github.io\/blog\/mysql-aa\/",
   "keywords":"[]"
 }
@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.68.3 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.92.2 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="niuheshui">
 <meta name="keywords" content="">
 <meta name="description" content="使用二进制压缩包在linux上安装mysql">
@@ -334,21 +334,21 @@
 <h2 id="1下载mysql二进制压缩包">1.下载MySQL二进制压缩包</h2>
 <p><a href="https://downloads.mysql.com/archives/community/">MySQL :: Download MySQL Community Server (Archived Versions) &mdash; MySQL ：： 下载 MySQL Community Server （存档版本）</a></p>
 <h2 id="2解压">2.解压</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~$ tar -xf mysql-8.0.30-linux-glibc2.12-x86_64.tar.xz -C /opt/module
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~$ tar -xf mysql-8.0.30-linux-glibc2.12-x86_64.tar.xz -C /opt/module
 
 root@node1:/opt/module# mv mysql-8.0.30-linux-glibc2.12-x86_64/ mysql-8.0.30
 </code></pre></div><h2 id="3创建数据库相关目录">3.创建数据库相关目录</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# mkdir data
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# mkdir data
 root@node1:/opt/module/mysql-8.0.30# mkdir sock
 root@node1:/opt/module/mysql-8.0.30# mkdir log
 root@node1:/opt/module/mysql-8.0.30# mkdir pid
 </code></pre></div><h2 id="4添加mysql用户组与用户">4.添加mysql用户组与用户</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# groupadd mysql
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# groupadd mysql
 root@node1:/opt/module/mysql-8.0.30# useradd -r -g mysql -s /bin/false mysql
 </code></pre></div><h2 id="5编辑配置文件">5.编辑配置文件</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# vim /etc/my.cnf
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# vim /etc/my.cnf
 </code></pre></div><h3 id="51mycnf">5.1my.cnf</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#75715e"># For advice on how to change settings please see</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#75715e"># For advice on how to change settings please see</span>
 <span style="color:#75715e"># https://dev.mysql.com/doc/refman/8.0/en/server-configuration-defaults.html</span>
 
 <span style="color:#66d9ef">[client]</span>
@@ -423,24 +423,24 @@ root@node1:/opt/module/mysql-8.0.30# useradd -r -g mysql -s /bin/false mysql
 <span style="color:#a6e22e">innodb_open_files</span><span style="color:#f92672">=</span><span style="color:#e6db74">300</span>
 <span style="color:#a6e22e">innodb_file_per_table</span><span style="color:#f92672">=</span><span style="color:#e6db74">1</span>
 </code></pre></div><h2 id="6更改目录所属组和用户为mysql">6.更改目录所属组和用户为mysql</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# chown -R mysql:mysql /opt/module/mysql-8.0.30/
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# chown -R mysql:mysql /opt/module/mysql-8.0.30/
 </code></pre></div><h2 id="7初始化">7.初始化</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# bin/mysqld --defaults-file<span style="color:#f92672">=</span>/etc/my.cnf --basedir<span style="color:#f92672">=</span>/opt/module/mysql-8.0.30/ --datadir<span style="color:#f92672">=</span>/opt/module/mysql-8.0.30/data --user<span style="color:#f92672">=</span>mysql --initialize
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# bin/mysqld --defaults-file<span style="color:#f92672">=</span>/etc/my.cnf --basedir<span style="color:#f92672">=</span>/opt/module/mysql-8.0.30/ --datadir<span style="color:#f92672">=</span>/opt/module/mysql-8.0.30/data --user<span style="color:#f92672">=</span>mysql --initialize
 </code></pre></div><h3 id="71缺少依赖">7.1缺少依赖</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bin/mysqld: error <span style="color:#66d9ef">while</span> loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bin/mysqld: error <span style="color:#66d9ef">while</span> loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory
 <span style="color:#75715e"># 安装依赖</span>
 root@node1:/opt/module/mysql-8.0.30# apt install libaio1
 </code></pre></div><h2 id="8创建-ssl-证书和密钥文件以及-rsa-密钥对文件可选">8.创建 SSL 证书和密钥文件以及 RSA 密钥对文件(可选)</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# bin/mysql_ssl_rsa_setup --datadir<span style="color:#f92672">=</span>/opt/module/mysql-8.0.30/data
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# bin/mysql_ssl_rsa_setup --datadir<span style="color:#f92672">=</span>/opt/module/mysql-8.0.30/data
 </code></pre></div><h2 id="9复制mysql启动配置到linux系统启动目录下">9.复制mysql启动配置到linux系统启动目录下</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# cp /opt/module/mysql-8.0.30/support-files/mysql.server /etc/init.d/mysql
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# cp /opt/module/mysql-8.0.30/support-files/mysql.server /etc/init.d/mysql
 </code></pre></div><h3 id="91修改-basedir-datadir-参数">9.1修改 basedir datadir 参数</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# vim /etc/init.d/mysql
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# vim /etc/init.d/mysql
 </code></pre></div><h2 id="10启动mysql服务">10.启动mysql服务</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# /etc/init.d/mysql start
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# /etc/init.d/mysql start
 Starting mysql <span style="color:#f92672">(</span>via systemctl<span style="color:#f92672">)</span>: mysql.service.
 </code></pre></div><h3 id="101查看mysql服务状态">10.1查看mysql服务状态</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# systemctl status mysql
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# systemctl status mysql
 ● mysql.service - LSB: start and stop MySQL
      Loaded: loaded <span style="color:#f92672">(</span>/etc/init.d/mysql; generated<span style="color:#f92672">)</span>
      Active: active <span style="color:#f92672">(</span>running<span style="color:#f92672">)</span> since Sat 2023-05-20 17:20:29 PDT; 11s ago
@@ -457,10 +457,10 @@ May <span style="color:#ae81ff">20</span> 17:20:27 node1 mysql<span style="color
 May <span style="color:#ae81ff">20</span> 17:20:29 node1 mysql<span style="color:#f92672">[</span>5117<span style="color:#f92672">]</span>: .. *
 May <span style="color:#ae81ff">20</span> 17:20:29 node1 systemd<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>: Started LSB: start and stop MySQL.
 </code></pre></div><h2 id="11查看root用户初始密码">11.查看root用户初始密码</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# cat log/mysql-8.0.err | grep <span style="color:#e6db74">&#34;password&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# cat log/mysql-8.0.err | grep <span style="color:#e6db74">&#34;password&#34;</span>
 2023-05-20T17:16:51.057092-07:00 <span style="color:#ae81ff">6</span> <span style="color:#f92672">[</span>Note<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>MY-010454<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Server<span style="color:#f92672">]</span> A temporary password is generated <span style="color:#66d9ef">for</span> root@localhost: CgoGakd+a8Lo
 </code></pre></div><h2 id="12登录并修改root密码">12.登录并修改root密码</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# bin/mysql -u root -p
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/opt/module/mysql-8.0.30# bin/mysql -u root -p
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or <span style="color:#ae81ff">\g</span>.
 Your MySQL connection id is <span style="color:#ae81ff">9</span>
@@ -487,11 +487,11 @@ Query OK, <span style="color:#ae81ff">0</span> rows affected <span style="color:
 mysql&gt; exit;
 Bye
 </code></pre></div><h3 id="121缺少依赖">12.1缺少依赖</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bin/mysql: error <span style="color:#66d9ef">while</span> loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bin/mysql: error <span style="color:#66d9ef">while</span> loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory
 <span style="color:#75715e"># 安装依赖</span>
 root@node1:/opt/module/mysql-8.0.30# apt install libtinfo5
 </code></pre></div><h2 id="13mysql开机自启可选">13.mysql开机自启(可选)</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/home/hadoop# update-rc.d mysql defaults
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:/home/hadoop# update-rc.d mysql defaults
 </code></pre></div><h2 id="14配置环境变量">14.配置环境变量</h2>
               
 
