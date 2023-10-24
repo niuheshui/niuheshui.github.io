@@ -3,10 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://niuheshui.github.io/blog/</loc>
-    <lastmod>2023-08-15T01:18:53+08:00</lastmod>
+    <lastmod>2023-10-24T11:30:33+08:00</lastmod>
   </url><url>
     <loc>https://niuheshui.github.io/categories/</loc>
-    <lastmod>2023-08-15T01:18:53+08:00</lastmod>
+    <lastmod>2023-10-24T11:30:33+08:00</lastmod>
+  </url><url>
+    <loc>https://niuheshui.github.io/categories/git/</loc>
+    <lastmod>2023-10-24T11:30:33+08:00</lastmod>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/git/</loc>
+    <lastmod>2023-10-24T11:30:33+08:00</lastmod>
+  </url><url>
+    <loc>https://niuheshui.github.io/blog/gitlet/</loc>
+    <lastmod>2023-10-24T11:30:33+08:00</lastmod>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/linux/</loc>
+    <lastmod>2023-10-24T11:30:33+08:00</lastmod>
+  </url><url>
+    <loc>https://niuheshui.github.io/categories/linux/</loc>
+    <lastmod>2023-10-24T11:30:33+08:00</lastmod>
+  </url><url>
+    <loc>https://niuheshui.github.io/</loc>
+    <lastmod>2023-10-24T11:30:33+08:00</lastmod>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/</loc>
+    <lastmod>2023-10-24T11:30:33+08:00</lastmod>
   </url><url>
     <loc>https://niuheshui.github.io/tags/dotfiles/</loc>
     <lastmod>2023-08-15T01:18:53+08:00</lastmod>
@@ -15,21 +36,6 @@
     <lastmod>2023-08-15T01:18:53+08:00</lastmod>
   </url><url>
     <loc>https://niuheshui.github.io/blog/dotfiles/</loc>
-    <lastmod>2023-08-15T01:18:53+08:00</lastmod>
-  </url><url>
-    <loc>https://niuheshui.github.io/tags/git/</loc>
-    <lastmod>2023-08-15T01:18:53+08:00</lastmod>
-  </url><url>
-    <loc>https://niuheshui.github.io/tags/linux/</loc>
-    <lastmod>2023-08-15T01:18:53+08:00</lastmod>
-  </url><url>
-    <loc>https://niuheshui.github.io/categories/linux/</loc>
-    <lastmod>2023-08-15T01:18:53+08:00</lastmod>
-  </url><url>
-    <loc>https://niuheshui.github.io/</loc>
-    <lastmod>2023-08-15T01:18:53+08:00</lastmod>
-  </url><url>
-    <loc>https://niuheshui.github.io/tags/</loc>
     <lastmod>2023-08-15T01:18:53+08:00</lastmod>
   </url><url>
     <loc>https://niuheshui.github.io/tags/ubuntu/</loc>
