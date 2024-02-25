@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Articles on niuheshui.github.io</title>
-    <link>https://niuheshui.github.io/post/</link>
-    <description>Recent content in Articles on niuheshui.github.io</description>
+    <title>linux on niuheshui.github.io</title>
+    <link>https://niuheshui.github.io/tags/linux/</link>
+    <description>Recent content in linux on niuheshui.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 25 Feb 2024 21:07:36 +0800</lastBuildDate>
-    <atom:link href="https://niuheshui.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://niuheshui.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>nmcli管理网络连接</title>
       <link>https://niuheshui.github.io/post/nmcli/</link>
       <pubDate>Sun, 25 Feb 2024 21:07:36 +0800</pubDate>
       <guid>https://niuheshui.github.io/post/nmcli/</guid>
       <description>&lt;p&gt;&lt;code&gt;nmcli&lt;/code&gt; 是用于控制 NetworkManager 的命令行工具。NetworkManager 是一个系统网络服务，用于管理各种类型的网络连接，包括以太网、Wi-Fi、VPN 等。&lt;code&gt;nmcli&lt;/code&gt; 允许用户通过命令行界面管理 NetworkManager 管理的网络连接，包括查看、创建、编辑、激活和停用连接。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Test</title>
-      <link>https://niuheshui.github.io/post/test/</link>
-      <pubDate>Tue, 20 Feb 2024 23:37:49 +0800</pubDate>
-      <guid>https://niuheshui.github.io/post/test/</guid>
-      <description>test one blog hello world Hello Wrold!</description>
     </item>
   </channel>
 </rss>

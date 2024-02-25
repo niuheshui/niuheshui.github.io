@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/tmp/test/niu-blog-source",
+	"sourceRoot": "/home/niu/niu-blog-source",
 	"sources": [
 		"ananke/css/main.css"
 	],

@@ -2,8 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://niuheshui.github.io/tags/linux/</loc>
+    <lastmod>2024-02-25T21:07:36+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/netwrok/</loc>
+    <lastmod>2024-02-25T21:07:36+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://niuheshui.github.io/</loc>
-    <lastmod>2024-02-20T23:37:49+08:00</lastmod>
+    <lastmod>2024-02-25T21:07:36+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/nmcli/</loc>
+    <lastmod>2024-02-25T21:07:36+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/post/nmcli/</loc>
+    <lastmod>2024-02-25T21:07:36+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/</loc>
+    <lastmod>2024-02-25T21:07:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -22,10 +47,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://niuheshui.github.io/categories/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://niuheshui.github.io/tags/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
