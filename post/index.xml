@@ -6,21 +6,105 @@
     <description>Recent content in Articles on niuheshui.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 25 Feb 2024 21:07:36 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 27 Feb 2024 22:51:23 +0800</lastBuildDate>
     <atom:link href="https://niuheshui.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我们到底该怎么学技术？如何成为一个优秀的技术人员？</title>
+      <link>https://niuheshui.github.io/post/experience/experience13/</link>
+      <pubDate>Tue, 27 Feb 2024 22:51:23 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience13/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>高手是怎样练成的</title>
+      <link>https://niuheshui.github.io/post/experience/experience12/</link>
+      <pubDate>Tue, 27 Feb 2024 22:51:20 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience12/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>想进大公司学生的困惑</title>
+      <link>https://niuheshui.github.io/post/experience/experience11/</link>
+      <pubDate>Tue, 27 Feb 2024 22:51:18 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience11/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>数学对编程的重要作用</title>
+      <link>https://niuheshui.github.io/post/experience/experience10/</link>
+      <pubDate>Tue, 27 Feb 2024 22:51:09 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience10/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>算法的力量</title>
+      <link>https://niuheshui.github.io/post/experience/experience9/</link>
+      <pubDate>Tue, 27 Feb 2024 22:51:06 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience9/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>一个老程序员给青鸟学生和即将读青鸟学生的建议和评价</title>
+      <link>https://niuheshui.github.io/post/experience/experience8/</link>
+      <pubDate>Tue, 27 Feb 2024 22:51:04 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience8/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>一位高级程序员给学弟学妹的建议</title>
+      <link>https://niuheshui.github.io/post/experience/experience7/</link>
+      <pubDate>Tue, 27 Feb 2024 22:51:01 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience7/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>计算机科班出身的优势是什么？</title>
+      <link>https://niuheshui.github.io/post/experience/experience6/</link>
+      <pubDate>Tue, 27 Feb 2024 22:50:58 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience6/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>程序员的编程内功和外功有哪些？如何看待编程内功和外功的关系？</title>
+      <link>https://niuheshui.github.io/post/experience/experience5/</link>
+      <pubDate>Tue, 27 Feb 2024 22:50:54 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience5/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>数据结构，操作系统，计算机网络，计算机组成原理这几门课在大学生计算机专业知识体系中有怎样的地位？</title>
+      <link>https://niuheshui.github.io/post/experience/experience4/</link>
+      <pubDate>Tue, 27 Feb 2024 22:50:52 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience4/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>程序员基础掌握得好学新东西真的就快么？</title>
+      <link>https://niuheshui.github.io/post/experience/experience3/</link>
+      <pubDate>Tue, 27 Feb 2024 22:45:03 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience3/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Web前端需要熟悉大学里［高大上］计算专业课吗？</title>
+      <link>https://niuheshui.github.io/post/experience/experience2/</link>
+      <pubDate>Tue, 27 Feb 2024 22:45:01 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>既然报个培训班就可以成为码农，那学计算机专业有什么用？</title>
+      <link>https://niuheshui.github.io/post/experience/experience1/</link>
+      <pubDate>Tue, 27 Feb 2024 22:44:46 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/experience/experience1/</guid>
+      <description></description>
+    </item>
     <item>
       <title>nmcli管理网络连接</title>
       <link>https://niuheshui.github.io/post/nmcli/</link>
       <pubDate>Sun, 25 Feb 2024 21:07:36 +0800</pubDate>
       <guid>https://niuheshui.github.io/post/nmcli/</guid>
       <description>&lt;p&gt;&lt;code&gt;nmcli&lt;/code&gt; 是用于控制 NetworkManager 的命令行工具。NetworkManager 是一个系统网络服务，用于管理各种类型的网络连接，包括以太网、Wi-Fi、VPN 等。&lt;code&gt;nmcli&lt;/code&gt; 允许用户通过命令行界面管理 NetworkManager 管理的网络连接，包括查看、创建、编辑、激活和停用连接。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Test</title>
-      <link>https://niuheshui.github.io/post/test/</link>
-      <pubDate>Tue, 20 Feb 2024 23:37:49 +0800</pubDate>
-      <guid>https://niuheshui.github.io/post/test/</guid>
-      <description>test one blog hello world Hello Wrold!</description>
     </item>
   </channel>
 </rss>
