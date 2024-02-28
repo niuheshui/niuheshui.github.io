@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>xdg-mime on niuheshui.github.io</title>
+    <link>https://niuheshui.github.io/tags/xdg-mime/</link>
+    <description>Recent content in xdg-mime on niuheshui.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 28 Feb 2024 20:05:14 +0800</lastBuildDate>
+    <atom:link href="https://niuheshui.github.io/tags/xdg-mime/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用xdg-mime修改xdg-open默认打开方式</title>
+      <link>https://niuheshui.github.io/post/xdg-mime/</link>
+      <pubDate>Wed, 28 Feb 2024 20:05:14 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/xdg-mime/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
