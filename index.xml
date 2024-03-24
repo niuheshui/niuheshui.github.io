@@ -6,8 +6,15 @@
     <description>Recent content in niuheshui on niuheshui.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 21 Mar 2024 23:08:10 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 24 Mar 2024 13:34:34 +0800</lastBuildDate>
     <atom:link href="https://niuheshui.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>操作系统模型</title>
+      <link>https://niuheshui.github.io/post/os/os-model/</link>
+      <pubDate>Sun, 24 Mar 2024 13:34:34 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/os/os-model/</guid>
+      <description>&lt;p&gt;南京大学 jyy &lt;a href=&#34;https://jyywiki.cn/OS/2024/&#34;&gt;操作系统: 设计与实现(2024春季)&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>M1: 打印进程树(pstree)</title>
       <link>https://niuheshui.github.io/post/os/m1/</link>
