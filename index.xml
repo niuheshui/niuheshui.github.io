@@ -6,8 +6,15 @@
     <description>Recent content in niuheshui on niuheshui.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 24 Mar 2024 13:34:34 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Mar 2024 12:46:29 +0800</lastBuildDate>
     <atom:link href="https://niuheshui.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为什么要先使用sort再使用uniq</title>
+      <link>https://niuheshui.github.io/post/questions/uniq_and_sort/</link>
+      <pubDate>Tue, 26 Mar 2024 12:46:29 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/questions/uniq_and_sort/</guid>
+      <description>&lt;p&gt;Why are there duplicates in the shell command first uniq and then sort?&lt;/p&gt;</description>
+    </item>
     <item>
       <title>操作系统模型</title>
       <link>https://niuheshui.github.io/post/os/os-model/</link>
