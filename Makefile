@@ -11,8 +11,8 @@ nil:
 
 commit: 
 	@echo "+ COMMIT" $(NAME)
-	@git add . $(redirect)
-	@git commit -m 'make commit' $(redirect)
+	git add . $(redirect)
+	git commit -m 'make commit' $(redirect)
 
 push: commit
 	@echo "+ PUSH" $(NAME)
