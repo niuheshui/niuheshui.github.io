@@ -43,7 +43,7 @@
 <meta itemprop="name" content="使用xdg-mime修改xdg-open默认打开方式">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-02-28T20:05:14+08:00" />
 <meta itemprop="dateModified" content="2024-02-28T20:05:14+08:00" />
-<meta itemprop="wordCount" content="19">
+<meta itemprop="wordCount" content="32">
 <meta itemprop="keywords" content="linux,xdg-mime," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="使用xdg-mime修改xdg-open默认打开方式"/>
 <meta name="twitter:description" content=""/>
 
@@ -141,7 +141,12 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ xdg-mime default google-chrome.desktop application/pdf
 </span></span></code></pre></div><p>默认使用<code>google chrome</code>打开<code>pdf</code>文件
 需要有相应的<code>.desktop</code><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>文件</p>
-<div class="footnotes" role="doc-endnotes">
+<p>Example:</p>
+<p>修改默认文件管理器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ xdg-mime query filetype .
+</span></span><span style="display:flex;"><span>inode/directory
+</span></span><span style="display:flex;"><span>$ xdg-mime default thunar.desktop inode/directory
+</span></span></code></pre></div><div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1">
