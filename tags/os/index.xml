@@ -6,8 +6,15 @@
     <description>Recent content in os on niuheshui.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 24 Mar 2024 13:34:34 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 01 Apr 2024 09:54:13 +0800</lastBuildDate>
     <atom:link href="https://niuheshui.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>锁的实现(x86)</title>
+      <link>https://niuheshui.github.io/post/os/lock_implementation/</link>
+      <pubDate>Mon, 01 Apr 2024 09:54:13 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/os/lock_implementation/</guid>
+      <description></description>
+    </item>
     <item>
       <title>操作系统模型</title>
       <link>https://niuheshui.github.io/post/os/os-model/</link>

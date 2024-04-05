@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Virtual Box from USB Boot | niuheshui.github.io</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Virtual Box从U盘启动">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://niuheshui.github.io/post/virtualbox/ust_boot/">
+    
+
+    <meta property="og:title" content="Virtual Box from USB Boot" />
+<meta property="og:description" content="Virtual Box从U盘启动" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niuheshui.github.io/post/virtualbox/ust_boot/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-04-05T14:02:42+08:00" />
+<meta property="article:modified_time" content="2024-04-05T14:02:42+08:00" />
+
+<meta itemprop="name" content="Virtual Box from USB Boot">
+<meta itemprop="description" content="Virtual Box从U盘启动"><meta itemprop="datePublished" content="2024-04-05T14:02:42+08:00" />
+<meta itemprop="dateModified" content="2024-04-05T14:02:42+08:00" />
+<meta itemprop="wordCount" content="134">
+<meta itemprop="keywords" content="virtualbox,usb," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Virtual Box from USB Boot"/>
+<meta name="twitter:description" content="Virtual Box从U盘启动"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        niuheshui.github.io
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About 页">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles 页">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Virtual Box from USB Boot</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-04-05T14:02:42+08:00">四月 5, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>VirtualBox从U盘启动系统</p>
+<p>VirtualBox Version</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ virtualbox --help
+</span></span><span style="display:flex;"><span>Oracle VM VirtualBox VM Selector v6.1.50_Ubuntu
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>C<span style="color:#f92672">)</span> 2005-2024 Oracle Corporation
+</span></span><span style="display:flex;"><span>All rights reserved.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>No special options.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>If you are looking <span style="color:#66d9ef">for</span> --startvm and related options, you need to use VirtualBoxVM.
+</span></span></code></pre></div><p>列出所有块设备</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ lsblk
+</span></span><span style="display:flex;"><span>NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+</span></span><span style="display:flex;"><span>sda           8:0    <span style="color:#ae81ff">0</span> 111.8G  <span style="color:#ae81ff">0</span> disk 
+</span></span><span style="display:flex;"><span>├─sda1        8:1    <span style="color:#ae81ff">0</span> 102.4G  <span style="color:#ae81ff">0</span> part /
+</span></span><span style="display:flex;"><span>├─sda2        8:2    <span style="color:#ae81ff">0</span>    95M  <span style="color:#ae81ff">0</span> part /boot/efi
+</span></span><span style="display:flex;"><span>└─sda3        8:3    <span style="color:#ae81ff">0</span>   9.3G  <span style="color:#ae81ff">0</span> part <span style="color:#f92672">[</span>SWAP<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>sdb           8:16   <span style="color:#ae81ff">1</span> 117.2G  <span style="color:#ae81ff">0</span> disk 
+</span></span><span style="display:flex;"><span>├─sdb1        8:17   <span style="color:#ae81ff">1</span>   300M  <span style="color:#ae81ff">0</span> part 
+</span></span><span style="display:flex;"><span>├─sdb2        8:18   <span style="color:#ae81ff">1</span> 116.2G  <span style="color:#ae81ff">0</span> part 
+</span></span><span style="display:flex;"><span>└─sdb3        8:19   <span style="color:#ae81ff">1</span>   709M  <span style="color:#ae81ff">0</span> part 
+</span></span></code></pre></div><p><code>sdb</code>就是我的U盘</p>
+<p>创建虚拟磁盘</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo vboxmanage internalcommands createrawvmdk -filename ./usb.vmdk -rawdisk /dev/sdb 
+</span></span><span style="display:flex;"><span>RAW host disk access VMDK file ./usb.vmdk created successfully.
+</span></span></code></pre></div><p>GPT-3.5 Turbo的解释</p>
+<p>这个命令是用于在VirtualBox中创建一个指向物理磁盘的虚拟磁盘映像文件（VMDK），以便将物理磁盘直接连接到虚拟机中。具体参数的含义如下：</p>
+<ul>
+<li><code>sudo</code>：以管理员权限运行该命令。</li>
+<li><code>vboxmanage</code>：VirtualBox的命令行管理工具。</li>
+<li><code>internalcommands createrawvmdk</code>：表示创建一个指向物理磁盘的虚拟磁盘映像文件。</li>
+<li><code>-filename ./usb.vmdk</code>：指定生成的虚拟磁盘映像文件的路径和名称为<code>usb.vmdk</code>，这个文件将用于描述物理磁盘。</li>
+<li><code>-rawdisk /dev/sdb</code>：指定要连接的物理磁盘设备文件为<code>/dev/sdb</code>，这表示将物理磁盘<code>/dev/sdb</code>直接连接到虚拟机中。</li>
+</ul>
+<p>通过这个命令，您可以创建一个VMDK文件，该文件描述了物理磁盘<code>/dev/sdb</code>，使得VirtualBox可以直接访问和使用这个物理磁盘。这样，您可以在虚拟机中操作和管理这个物理磁盘上的数据。请谨慎操作，确保您了解操作的影响，并在执行此命令之前备份重要数据，以免造成数据丢失。</p>
+<p>使用<code>sudo</code>启动<code>virtualbox</code>, 创建虚拟机时选择创建的虚拟磁盘</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo virtualbox
+</span></span></code></pre></div><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/virtualbox/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">virtualbox</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/usb/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">usb</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://niuheshui.github.io/" >
+    &copy;  niuheshui.github.io 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
