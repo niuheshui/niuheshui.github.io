@@ -2,13 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://niuheshui.github.io/post/tools/apt_http_proxy/</loc>
+    <lastmod>2024-04-16T13:20:53+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/linux/</loc>
+    <lastmod>2024-04-16T13:20:53+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://niuheshui.github.io/</loc>
-    <lastmod>2024-04-05T14:02:42+08:00</lastmod>
+    <lastmod>2024-04-16T13:20:53+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://niuheshui.github.io/tags/</loc>
-    <lastmod>2024-04-05T14:02:42+08:00</lastmod>
+    <lastmod>2024-04-16T13:20:53+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -54,11 +64,6 @@
   </url><url>
     <loc>https://niuheshui.github.io/post/os/m1/</loc>
     <lastmod>2024-03-21T23:08:10+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://niuheshui.github.io/tags/linux/</loc>
-    <lastmod>2024-02-28T20:05:14+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
