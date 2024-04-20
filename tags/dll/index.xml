@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DLL on niuheshui.github.io</title>
+    <link>https://niuheshui.github.io/tags/dll/</link>
+    <description>Recent content in DLL on niuheshui.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 20 Apr 2024 22:50:05 +0800</lastBuildDate>
+    <atom:link href="https://niuheshui.github.io/tags/dll/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>动态链接库的使用</title>
+      <link>https://niuheshui.github.io/post/os/shared_library/</link>
+      <pubDate>Sat, 20 Apr 2024 22:50:05 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/os/shared_library/</guid>
+      <description>&lt;p&gt;&lt;code&gt;Linux&lt;/code&gt;下编译和使用动态链接库(Dynamic Link Library, DLL)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
