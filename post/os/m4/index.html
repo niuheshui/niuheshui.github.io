@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>M4: C Read-Eval-Print-Loop (crepl) | niuheshui.github.io</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="操作系统: 设计与实现(2024春季) M4: C Read-Eval-Print-Loop (crepl)">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://niuheshui.github.io/post/os/m4/">
+    
+
+    <meta property="og:title" content="M4: C Read-Eval-Print-Loop (crepl)" />
+<meta property="og:description" content="操作系统: 设计与实现(2024春季) M4: C Read-Eval-Print-Loop (crepl)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niuheshui.github.io/post/os/m4/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-04-21T16:22:56+08:00" />
+<meta property="article:modified_time" content="2024-04-21T16:22:56+08:00" />
+
+<meta itemprop="name" content="M4: C Read-Eval-Print-Loop (crepl)">
+<meta itemprop="description" content="操作系统: 设计与实现(2024春季) M4: C Read-Eval-Print-Loop (crepl)"><meta itemprop="datePublished" content="2024-04-21T16:22:56+08:00" />
+<meta itemprop="dateModified" content="2024-04-21T16:22:56+08:00" />
+<meta itemprop="wordCount" content="352">
+<meta itemprop="keywords" content="os," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="M4: C Read-Eval-Print-Loop (crepl)"/>
+<meta name="twitter:description" content="操作系统: 设计与实现(2024春季) M4: C Read-Eval-Print-Loop (crepl)"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        niuheshui.github.io
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About 页">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles 页">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">M4: C Read-Eval-Print-Loop (crepl)</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-04-21T16:22:56+08:00">四月 21, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p><a href="https://jyywiki.cn/OS/2024/">操作系统: 设计与实现(2024春季)</a> <a href="https://jyywiki.cn/OS/2024/labs/M4.md">M4: C Read-Eval-Print-Loop (crepl)</a></p>
+<p>输入只有两种类型函数或表达式.</p>
+<h4 id="保存到临时文件">保存到临时文件</h4>
+<p>如果是函数就原样保存到临时文件中, 如果是表达式就包装一个函数再保存到临时文件中.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/* function */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fib</span>(<span style="color:#66d9ef">int</span> n) { <span style="color:#66d9ef">return</span> (n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">?</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">fib</span>(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">fib</span>(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>); }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* expression */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">__expr_wrapper__</span>() { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fib</span>(<span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">fib</span>(<span style="color:#ae81ff">12</span>); }
+</span></span></code></pre></div><p>所以本质上不论是函数还是表达式, 都是函数, 只不过只有包装函数才会被调用.</p>
+<p>使用`mkstemp family API&rsquo;<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>创建临时文件.</p>
+<h4 id="编译为共享库">编译为共享库</h4>
+<p>使用<code>fork</code>创建子进程使用<code>execv</code>调用<code>gcc</code>将刚刚的临时文件编译为<a href="https://en.wikipedia.org/wiki/Dynamic-link_library">动态链接库</a></p>
+<h4 id="动态加载">动态加载</h4>
+<p><a href="https://en.wikipedia.org/wiki/Dynamic_loading">动态加载</a>生成的动态链接库</p>
+<p>如果是是函数定义, 使用<code>RTLD_GLOBAL</code><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>标志加载共享库.</p>
+<p>如果是表达式, 加载共享库后还需使用<code>dlsym</code>获取包装函数的地址, d调用包装函数, 最后输出返回值.</p>
+<h4 id="实现">实现</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;assert.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;dlfcn.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;fcntl.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/wait.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unistd.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">check_dlopen</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>file, <span style="color:#66d9ef">int</span> mode) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#a6e22e">dlopen</span>(file, mode);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>p) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fprintf</span>(stderr, <span style="color:#e6db74">&#34;%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#a6e22e">dlerror</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">exit</span>(EXIT_FAILURE);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> p;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">check_dlsym</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>handle, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> name) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> <span style="color:#a6e22e">dlsym</span>(handle, name);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>f) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fprintf</span>(stderr, <span style="color:#e6db74">&#34;%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#a6e22e">dlerror</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dlclose</span>(handle);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">exit</span>(EXIT_FAILURE);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> f;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define TEMPLATE &#34;/tmp/XXXXXX.c&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> expr_format <span style="color:#f92672">=</span> 
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;__expr_wrapper__() {</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;return %s; </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;} </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> tmp_file[<span style="color:#ae81ff">32</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> lib_path[<span style="color:#ae81ff">32</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>FILE<span style="color:#f92672">*</span> <span style="color:#a6e22e">create_tmp_file</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sprintf</span>(tmp_file, <span style="color:#e6db74">&#34;%s&#34;</span>, TEMPLATE);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span>   fd;
+</span></span><span style="display:flex;"><span>  FILE<span style="color:#f92672">*</span> fp;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  fd <span style="color:#f92672">=</span> <span style="color:#a6e22e">mkstemps</span>(tmp_file, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (fd <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">perror</span>(<span style="color:#e6db74">&#34;Error creating temp file&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">exit</span>(EXIT_FAILURE);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fdopen</span>(fd, <span style="color:#e6db74">&#34;w&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (fp <span style="color:#f92672">==</span> NULL) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">perror</span>(<span style="color:#e6db74">&#34;Error opening temp file&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">close</span>(fd);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">exit</span>(EXIT_FAILURE);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> fp;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[]) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> line[<span style="color:#ae81ff">4096</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> status;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pid_t</span> pid;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;crepl&gt; &#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">fgets</span>(line, <span style="color:#66d9ef">sizeof</span>(line), stdin)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> isdef <span style="color:#f92672">=</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">strncmp</span>(<span style="color:#e6db74">&#34;int&#34;</span>, line, <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        FILE<span style="color:#f92672">*</span> fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">create_tmp_file</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fprintf</span>(fp, isdef <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;%s&#34;</span> <span style="color:#f92672">:</span> expr_format, line);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fclose</span>(fp);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">sprintf</span>(lib_path, <span style="color:#e6db74">&#34;/tmp/lib%.6s.so&#34;</span>, tmp_file<span style="color:#f92672">+</span><span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        pid <span style="color:#f92672">=</span> <span style="color:#a6e22e">fork</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (pid <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">perror</span>(<span style="color:#e6db74">&#34;Error forking&#34;</span>);
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">exit</span>(EXIT_FAILURE);
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (pid <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifndef DISPLAY_GCC_OUTPUT
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#75715e">// 关闭标准输出和标准错误，将输出重定向到 /dev/null
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#66d9ef">int</span> devnull <span style="color:#f92672">=</span> <span style="color:#a6e22e">open</span>(<span style="color:#e6db74">&#34;/dev/null&#34;</span>, O_WRONLY);
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">dup2</span>(devnull, STDOUT_FILENO);
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">dup2</span>(devnull, STDERR_FILENO);
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">close</span>(devnull);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif </span><span style="color:#75715e">/* ifdef DISPLAY_GCC_OUTPUT */</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[] <span style="color:#f92672">=</span> { 
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;gcc&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;-fPIC&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;-shared&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#if defined(__i386__) || defined(__i686__)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#34;-m32&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#elif defined(__x86_64__)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#34;-m64&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#34;-o&#34;</span>,
+</span></span><span style="display:flex;"><span>            lib_path, 
+</span></span><span style="display:flex;"><span>            tmp_file,
+</span></span><span style="display:flex;"><span>            NULL
+</span></span><span style="display:flex;"><span>          };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">execv</span>(<span style="color:#e6db74">&#34;/usr/bin/gcc&#34;</span>, argv);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">waitpid</span>(pid, <span style="color:#f92672">&amp;</span>status, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e">/* https://man7.org/linux/man-pages/man3/wait.3p.html */</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">WIFEXITED</span>(status) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">WEXITSTATUS</span>(status)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (isdef) {
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Compilation successful</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">check_dlopen</span>(lib_path, RTLD_NOW <span style="color:#f92672">|</span> RTLD_GLOBAL);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>handle <span style="color:#f92672">=</span> <span style="color:#a6e22e">check_dlopen</span>(lib_path, RTLD_NOW);
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">int</span> (<span style="color:#f92672">*</span>f)() <span style="color:#f92672">=</span> <span style="color:#a6e22e">check_dlsym</span>(handle,  <span style="color:#e6db74">&#34;__expr_wrapper__&#34;</span>);
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;= %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#a6e22e">f</span>());
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">dlclose</span>(handle);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Compilation failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>C标准库函数, 用来创建一个唯一的临时文件, 在线手册 <a href="https://man7.org/linux/man-pages/man3/mkstemp.3.html">https://man7.org/linux/man-pages/man3/mkstemp.3.html</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>此共享对象定义的符号将可用于后续加载的共享对象的符号解析, 在线手册 <a href="https://man7.org/linux/man-pages/man3/dlopen.3.html">https://man7.org/linux/man-pages/man3/dlopen.3.html</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/os/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">os</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">相关內容</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/os/lock_implementation/">锁的实现(x86)</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/os/os-model/">操作系统模型</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/os/m1/">M1: 打印进程树(pstree)</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://niuheshui.github.io/" >
+    &copy;  niuheshui.github.io 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
