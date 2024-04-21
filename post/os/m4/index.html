@@ -149,7 +149,7 @@
 <h4 id="动态加载">动态加载</h4>
 <p><a href="https://en.wikipedia.org/wiki/Dynamic_loading">动态加载</a>生成的动态链接库</p>
 <p>如果是是函数定义, 使用<code>RTLD_GLOBAL</code><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>标志加载共享库.</p>
-<p>如果是表达式, 加载共享库后还需使用<code>dlsym</code>获取包装函数的地址, d调用包装函数, 最后输出返回值.</p>
+<p>如果是表达式, 加载共享库后还需使用<code>dlsym</code>获取包装函数的地址, 调用包装函数, 最后输出返回值.</p>
 <h4 id="实现">实现</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;assert.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;dlfcn.h&gt;</span><span style="color:#75715e">
