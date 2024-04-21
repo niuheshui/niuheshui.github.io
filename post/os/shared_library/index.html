@@ -141,7 +141,7 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> b ? gcd<span style="color:#f92672">(</span>b, a % b<span style="color:#f92672">)</span> : a; 
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>$ gcc -shared -o libgcd.so gcd.c
-</span></span></code></pre></div><h5 id="链接时使用">链接时使用</h5>
+</span></span></code></pre></div><h5 id="链接">链接</h5>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat main.c
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#include &lt;stdio.h&gt;</span>
 </span></span><span style="display:flex;"><span>extern int gcd<span style="color:#f92672">(</span>int, int<span style="color:#f92672">)</span>;
@@ -157,7 +157,7 @@
 </span></span></code></pre></div><p>运行<code>main</code>时, 会去系统路径(例如<code>/usr/lib</code>)下找库, 需要在查找路径中加入当前目录, 否则就会像下面这样.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./main
 </span></span><span style="display:flex;"><span>./main: error <span style="color:#66d9ef">while</span> loading shared libraries: libgcd.so: cannot open shared object file: No such file or directory
-</span></span></code></pre></div><h5 id="在c语言中使用">在<code>c</code>语言中使用</h5>
+</span></span></code></pre></div><h5 id="动态加载">动态加载</h5>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;dlfcn.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
