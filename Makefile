@@ -14,8 +14,8 @@ commit:
 	@git add -A $(redirect)
 	@-git commit -m 'make commit' $(redirect)
 
-push: commit
-	@echo "+ PUSH" $(NAME)
+push:
+	echo "+ PUSH" $(NAME)
 	@-git push $(remote) $(remote_branch) $(redirect)
 
 clean:
