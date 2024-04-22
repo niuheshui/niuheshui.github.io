@@ -43,7 +43,7 @@
 <meta itemprop="name" content="M4: C Read-Eval-Print-Loop (crepl)">
 <meta itemprop="description" content="操作系统: 设计与实现(2024春季) M4: C Read-Eval-Print-Loop (crepl)"><meta itemprop="datePublished" content="2024-04-21T16:22:56+08:00" />
 <meta itemprop="dateModified" content="2024-04-21T16:22:56+08:00" />
-<meta itemprop="wordCount" content="352">
+<meta itemprop="wordCount" content="364">
 <meta itemprop="keywords" content="os," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="M4: C Read-Eval-Print-Loop (crepl)"/>
 <meta name="twitter:description" content="操作系统: 设计与实现(2024春季) M4: C Read-Eval-Print-Loop (crepl)"/>
 
@@ -143,13 +143,13 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/* expression */</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">__expr_wrapper__</span>() { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fib</span>(<span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">fib</span>(<span style="color:#ae81ff">12</span>); }
 </span></span></code></pre></div><p>所以本质上不论是函数还是表达式, 都是函数, 只不过只有包装函数才会被调用.</p>
-<p>使用`mkstemp family API&rsquo;<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>创建临时文件.</p>
+<p>使用 <code>mkstemp family API</code><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 创建临时文件.</p>
 <h4 id="编译为共享库">编译为共享库</h4>
-<p>使用<code>fork</code>创建子进程使用<code>execv</code>调用<code>gcc</code>将刚刚的临时文件编译为<a href="https://en.wikipedia.org/wiki/Dynamic-link_library">动态链接库</a></p>
+<p>使用 <code>fork</code> 创建子进程使用 <code>execv</code> 调用 <code>gcc</code> 将刚刚的临时文件编译为<a href="https://en.wikipedia.org/wiki/Dynamic-link_library">动态链接库</a></p>
 <h4 id="动态加载">动态加载</h4>
 <p><a href="https://en.wikipedia.org/wiki/Dynamic_loading">动态加载</a>生成的动态链接库</p>
-<p>如果是是函数定义, 使用<code>RTLD_GLOBAL</code><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>标志加载共享库.</p>
-<p>如果是表达式, 加载共享库后还需使用<code>dlsym</code>获取包装函数的地址, 调用包装函数, 最后输出返回值.</p>
+<p>如果是是函数定义, 使用 <code>RTLD_GLOBAL</code><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> 标志加载共享库.</p>
+<p>如果是表达式, 加载共享库后还需使用 <code>dlsym</code> 获取包装函数的地址, 调用包装函数, 最后输出返回值.</p>
 <h4 id="实现">实现</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;assert.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;dlfcn.h&gt;</span><span style="color:#75715e">
