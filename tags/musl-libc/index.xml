@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>musl-libc on niuheshui.github.io</title>
+    <link>https://niuheshui.github.io/tags/musl-libc/</link>
+    <description>Recent content in musl-libc on niuheshui.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 27 Apr 2024 21:18:50 +0800</lastBuildDate>
+    <atom:link href="https://niuheshui.github.io/tags/musl-libc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Use musl libc</title>
+      <link>https://niuheshui.github.io/post/c/musl_libc/</link>
+      <pubDate>Sat, 27 Apr 2024 21:18:50 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/c/musl_libc/</guid>
+      <description>&lt;p&gt;不使用 &lt;code&gt;GNU libc&lt;/code&gt; , 使用 &lt;code&gt;musl libc&lt;/code&gt; 编译运行 &lt;code&gt;c&lt;/code&gt; 程序, 并调试 &lt;code&gt;musl libc&lt;/code&gt; 源码&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
