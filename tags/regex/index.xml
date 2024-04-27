@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>regex on niuheshui.github.io</title>
+    <link>https://niuheshui.github.io/tags/regex/</link>
+    <description>Recent content in regex on niuheshui.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 27 Apr 2024 12:39:15 +0800</lastBuildDate>
+    <atom:link href="https://niuheshui.github.io/tags/regex/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>文本处理实用程序</title>
+      <link>https://niuheshui.github.io/post/tools/regex/</link>
+      <pubDate>Sat, 27 Apr 2024 12:39:15 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/tools/regex/</guid>
+      <description>&lt;p&gt;记录各种文本处理命令&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

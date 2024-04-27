@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>文本处理实用程序 | niuheshui.github.io</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="记录各种文本处理命令">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://niuheshui.github.io/post/tools/regex/">
+    
+
+    <meta property="og:title" content="文本处理实用程序" />
+<meta property="og:description" content="记录各种文本处理命令" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niuheshui.github.io/post/tools/regex/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-04-27T12:39:15+08:00" />
+<meta property="article:modified_time" content="2024-04-27T12:39:15+08:00" />
+
+<meta itemprop="name" content="文本处理实用程序">
+<meta itemprop="description" content="记录各种文本处理命令"><meta itemprop="datePublished" content="2024-04-27T12:39:15+08:00" />
+<meta itemprop="dateModified" content="2024-04-27T12:39:15+08:00" />
+<meta itemprop="wordCount" content="240">
+<meta itemprop="keywords" content="regex," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="文本处理实用程序"/>
+<meta name="twitter:description" content="记录各种文本处理命令"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        niuheshui.github.io
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About 页">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles 页">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">文本处理实用程序</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-04-27T12:39:15+08:00">四月 27, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>记录各种文本处理命令</p>
+<p>将<code>sh</code>的<code>manual</code>页转换为<code>markdown</code>,再转换为<code>HTML</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ man --nh sh | sed -E -e <span style="color:#e6db74">&#39;s/^   ([A-Z].*)$/## \1/&#39;</span> -e <span style="color:#e6db74">&#39;s/^([A-Z]* ?[A-Z])$/# \1/&#39;</span> | markdown_py &gt; sh.html
+</span></span></code></pre></div><p>获取当前<code>git</code>所处的分支</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ echo <span style="color:#66d9ef">$(</span>git branch | cut -d <span style="color:#e6db74">&#39; &#39;</span> -f2<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>$ echo <span style="color:#66d9ef">$(</span>git branch | awk <span style="color:#e6db74">&#39;{print $2}&#39;</span><span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><h2 id="awk">awk</h2>
+<p>Awk 是一种用于文本处理和数据提取的强大工具，其语法基于模式匹配和操作。下面是一些基础的 Awk 使用方法：</p>
+<ol>
+<li>
+<p><strong>打印行：</strong>
+使用默认操作，即打印每一行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;{print}&#39;</span> file.txt
+</span></span></code></pre></div><p>这将逐行打印文件 <code>file.txt</code> 的内容。</p>
+</li>
+<li>
+<p><strong>指定字段分隔符：</strong>
+默认情况下，Awk 使用空格作为字段分隔符，但你可以使用 <code>-F</code> 选项指定其他分隔符，如逗号：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>awk -F<span style="color:#e6db74">&#39;,&#39;</span> <span style="color:#e6db74">&#39;{print $1, $2}&#39;</span> file.csv
+</span></span></code></pre></div><p>这将以逗号作为分隔符，打印每行的第一个和第二个字段。</p>
+</li>
+<li>
+<p><strong>条件匹配：</strong>
+你可以使用条件语句来匹配特定的模式，并执行相应的操作：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;$1 == &#34;pattern&#34; {print $2}&#39;</span> file.txt
+</span></span></code></pre></div><p>这将打印文件 <code>file.txt</code> 中第一个字段等于 &ldquo;pattern&rdquo; 的行的第二个字段。</p>
+</li>
+<li>
+<p><strong>计算行数、字段数等：</strong>
+Awk 还可以用于执行一些简单的计算任务，比如计算行数、字段数等：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;END {print NR}&#39;</span> file.txt
+</span></span></code></pre></div><p>这将打印文件 <code>file.txt</code> 的总行数。</p>
+</li>
+<li>
+<p><strong>自定义输出格式：</strong>
+你可以使用 <code>printf</code> 函数来定义输出的格式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;{printf &#34;%-10s %-5s\n&#34;, $1, $2}&#39;</span> file.txt
+</span></span></code></pre></div><p>这将按照指定的格式打印每行的第一个和第二个字段。</p>
+</li>
+<li>
+<p><strong>使用 BEGIN 和 END 块：</strong>
+<code>BEGIN</code> 和 <code>END</code> 块分别在处理前和处理后执行一次，通常用于初始化或总结操作：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;BEGIN {print &#34;Start processing...&#34;} {print $0} END {print &#34;Processing finished.&#34;}&#39;</span> file.txt
+</span></span></code></pre></div><p>这将在处理 <code>file.txt</code> 前打印 &ldquo;Start processing&hellip;&quot;，处理结束后打印 &ldquo;Processing finished.&quot;。</p>
+</li>
+</ol>
+<p>这些只是 Awk 的一些基础用法，它还有更多强大的功能，如数组、函数等，可以用于更复杂的文本处理任务。</p>
+<h2 id="sed">sed</h2>
+<p>Sed（流编辑器）是一个流编辑器，用于对文本进行基本的转换和处理。以下是一些 Sed 的基础使用方法：</p>
+<ol>
+<li>
+<p><strong>替换文本：</strong>
+使用 <code>s</code> 命令进行文本替换，语法为 <code>s/要替换的内容/替换后的内容/</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sed <span style="color:#e6db74">&#39;s/old_text/new_text/&#39;</span> file.txt
+</span></span></code></pre></div><p>这将在 <code>file.txt</code> 中将所有的 <code>old_text</code> 替换为 <code>new_text</code>。</p>
+</li>
+<li>
+<p><strong>删除行：</strong>
+使用 <code>d</code> 命令删除匹配的行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sed <span style="color:#e6db74">&#39;/pattern/d&#39;</span> file.txt
+</span></span></code></pre></div><p>这将删除 <code>file.txt</code> 中包含 <code>pattern</code> 的所有行。</p>
+</li>
+<li>
+<p><strong>打印行：</strong>
+使用 <code>p</code> 命令打印匹配的行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sed -n <span style="color:#e6db74">&#39;/pattern/p&#39;</span> file.txt
+</span></span></code></pre></div><p>这将只打印 <code>file.txt</code> 中包含 <code>pattern</code> 的行。</p>
+</li>
+<li>
+<p><strong>添加行：</strong>
+使用 <code>a</code> 命令在匹配行后添加新行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sed <span style="color:#e6db74">&#39;/pattern/a new_line&#39;</span> file.txt
+</span></span></code></pre></div><p>这将在 <code>file.txt</code> 中包含 <code>pattern</code> 的行后添加 <code>new_line</code>。</p>
+</li>
+<li>
+<p><strong>插入行：</strong>
+使用 <code>i</code> 命令在匹配行前插入新行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sed <span style="color:#e6db74">&#39;/pattern/i new_line&#39;</span> file.txt
+</span></span></code></pre></div><p>这将在 <code>file.txt</code> 中包含 <code>pattern</code> 的行前插入 <code>new_line</code>。</p>
+</li>
+<li>
+<p><strong>使用正则表达式：</strong>
+Sed 支持正则表达式，你可以在命令中使用正则表达式进行匹配和替换。</p>
+</li>
+<li>
+<p><strong>编辑文件并保存结果：</strong>
+默认情况下，Sed 只是将结果打印到标准输出，如果你想直接修改文件并保存结果，你可以使用 <code>-i</code> 选项：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sed -i <span style="color:#e6db74">&#39;s/old_text/new_text/&#39;</span> file.txt
+</span></span></code></pre></div><p>这将在 <code>file.txt</code> 中将所有的 <code>old_text</code> 替换为 <code>new_text</code>，并将结果保存到 <code>file.txt</code> 中。</p>
+</li>
+<li>
+<p><strong>多个编辑命令：</strong>
+你可以将多个编辑命令组合在一起使用，使用分号进行分隔：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sed <span style="color:#e6db74">&#39;s/text1/text2/; s/text3/text4/&#39;</span> file.txt
+</span></span></code></pre></div><p>这将先将 <code>text1</code> 替换为 <code>text2</code>，然后将 <code>text3</code> 替换为 <code>text4</code>。</p>
+</li>
+</ol>
+<p>这些是 Sed 的一些基础用法，它还有更多高级功能，如模式空间、标签、转义字符等，可以用于更复杂的文本处理任务。</p><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/regex/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">regex</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://niuheshui.github.io/" >
+    &copy;  niuheshui.github.io 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
