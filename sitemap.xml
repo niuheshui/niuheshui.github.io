@@ -2,17 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://niuheshui.github.io/tags/musl-libc/</loc>
-    <lastmod>2024-04-27T21:18:50+08:00</lastmod>
+    <loc>https://niuheshui.github.io/post/tools/software/</loc>
+    <lastmod>2024-05-07T22:20:38+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://niuheshui.github.io/</loc>
-    <lastmod>2024-04-27T21:18:50+08:00</lastmod>
+    <lastmod>2024-05-07T22:20:38+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://niuheshui.github.io/tags/</loc>
+    <lastmod>2024-05-07T22:20:38+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/tool/</loc>
+    <lastmod>2024-05-07T22:20:38+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/musl-libc/</loc>
     <lastmod>2024-04-27T21:18:50+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

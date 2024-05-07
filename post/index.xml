@@ -6,8 +6,15 @@
     <description>Recent content in Articles on niuheshui.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 27 Apr 2024 21:18:50 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 May 2024 22:20:38 +0800</lastBuildDate>
     <atom:link href="https://niuheshui.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CLI实用程序集合</title>
+      <link>https://niuheshui.github.io/post/tools/software/</link>
+      <pubDate>Tue, 07 May 2024 22:20:38 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/tools/software/</guid>
+      <description>&lt;p&gt;记录各种命令行实用程序&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Use musl libc</title>
       <link>https://niuheshui.github.io/post/c/musl_libc/</link>
