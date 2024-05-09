@@ -2,17 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://niuheshui.github.io/</loc>
+    <lastmod>2024-05-09T18:37:06+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/post/tools/ranger_preview_images/</loc>
+    <lastmod>2024-05-09T18:37:06+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://niuheshui.github.io/tags/firefox/</loc>
     <lastmod>2024-05-08T15:21:29+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://niuheshui.github.io/post/tools/firefox_extensions/</loc>
-    <lastmod>2024-05-08T15:21:29+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://niuheshui.github.io/</loc>
     <lastmod>2024-05-08T15:21:29+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
