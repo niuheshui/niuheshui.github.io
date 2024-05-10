@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Idea Key | niuheshui.github.io</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Idea 按键映射备忘录">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://niuheshui.github.io/post/tools/idea_keymap/">
+    
+
+    <meta property="og:title" content="Idea Key" />
+<meta property="og:description" content="Idea 按键映射备忘录" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niuheshui.github.io/post/tools/idea_keymap/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-05-10T14:42:27+08:00" />
+<meta property="article:modified_time" content="2024-05-10T14:42:27+08:00" />
+
+<meta itemprop="name" content="Idea Key">
+<meta itemprop="description" content="Idea 按键映射备忘录"><meta itemprop="datePublished" content="2024-05-10T14:42:27+08:00" />
+<meta itemprop="dateModified" content="2024-05-10T14:42:27+08:00" />
+<meta itemprop="wordCount" content="138">
+<meta itemprop="keywords" content="idea," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Idea Key"/>
+<meta name="twitter:description" content="Idea 按键映射备忘录"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        niuheshui.github.io
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About 页">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles 页">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Idea Key</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-05-10T14:42:27+08:00">五月 10, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Idea 按键映射备忘录</p>
+<p>基于 Emacs 键绑定修改</p>
+<p>alt+e 文件管理器</p>
+<p>alt+t 终端</p>
+<p>alt alt 工具栏</p>
+<p>窗口分割基于 IdeaVim 插件</p>
+<pre tabindex="0"><code class="language-vimscript" data-lang="vimscript">&#34;&#34; Source your .vimrc
+&#34;source ~/.vimrc
+
+&#34;&#34; -- Suggested options --
+&#34; Show a few lines of context around the cursor. Note that this makes the
+&#34; text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+&#34; Do incremental searching.
+set incsearch
+
+&#34; Don&#39;t use Ex mode, use Q for formatting.
+map Q gq
+
+
+&#34;&#34; -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+&#34;&#34; Map \r to the Reformat Code action
+&#34;map \r &lt;Action&gt;(ReformatCode)
+
+&#34;&#34; Map &lt;leader&gt;d to start debug
+&#34;map &lt;leader&gt;d &lt;Action&gt;(Debug)
+
+&#34;&#34; Map \b to toggle the breakpoint on the current line
+&#34;map \b &lt;Action&gt;(ToggleLineBreakpoint)
+
+
+&#34; Find more examples here: https://jb.gg/share-ideavimrc
+
+&#34; window 
+nmap &lt;C-j&gt; &lt;C-W&gt;j
+nmap &lt;C-k&gt; &lt;C-W&gt;k
+nmap &lt;C-h&gt; &lt;C-W&gt;h
+nmap &lt;C-l&gt; &lt;C-W&gt;l
+</code></pre><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/idea/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">idea</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://niuheshui.github.io/" >
+    &copy;  niuheshui.github.io 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
