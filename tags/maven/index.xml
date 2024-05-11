@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>maven on niuheshui.github.io</title>
+    <link>https://niuheshui.github.io/tags/maven/</link>
+    <description>Recent content in maven on niuheshui.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 10 May 2024 15:02:22 +0800</lastBuildDate>
+    <atom:link href="https://niuheshui.github.io/tags/maven/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Maven 配置 aliyun 仓库</title>
+      <link>https://niuheshui.github.io/post/tools/maven_mirror/</link>
+      <pubDate>Fri, 10 May 2024 15:02:22 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/tools/maven_mirror/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

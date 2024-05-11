@@ -43,7 +43,7 @@
 <meta itemprop="name" content="Idea Key">
 <meta itemprop="description" content="Idea 按键映射备忘录"><meta itemprop="datePublished" content="2024-05-10T14:42:27+08:00" />
 <meta itemprop="dateModified" content="2024-05-10T14:42:27+08:00" />
-<meta itemprop="wordCount" content="138">
+<meta itemprop="wordCount" content="176">
 <meta itemprop="keywords" content="idea," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Idea Key"/>
 <meta name="twitter:description" content="Idea 按键映射备忘录"/>
 
@@ -135,12 +135,18 @@
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Idea 按键映射备忘录</p>
-<p>基于 Emacs 键绑定修改</p>
-<p>alt+e 文件管理器</p>
-<p>alt+t 终端</p>
-<p>alt alt 工具栏</p>
-<p>窗口分割基于 IdeaVim 插件</p>
-<pre tabindex="0"><code class="language-vimscript" data-lang="vimscript">&#34;&#34; Source your .vimrc
+<h4 id="window-相关">window 相关</h4>
+<pre tabindex="0"><code># 基于 Emacs 键绑定修改
+alt+e 文件管理器
+alt+t 终端
+alt alt 工具栏
+ctrl+x 2 向右拆分
+ctrl+x 3 向下拆分
+alt+x 类似 vscode 的 ctrl+shift+p
+</code></pre><p>分割窗口中移动基于 IdeaVim 插件</p>
+<pre tabindex="0"><code class="language-vimscript" data-lang="vimscript">&#34; ~/.ideavimrc
+
+&#34;&#34; Source your .vimrc
 &#34;source ~/.vimrc
 
 &#34;&#34; -- Suggested options --
@@ -173,7 +179,10 @@ nmap &lt;C-j&gt; &lt;C-W&gt;j
 nmap &lt;C-k&gt; &lt;C-W&gt;k
 nmap &lt;C-h&gt; &lt;C-W&gt;h
 nmap &lt;C-l&gt; &lt;C-W&gt;l
-</code></pre><ul class="pa0">
+</code></pre><h4 id="关于-emacs-键绑定无法插入制表符">关于 Emacs 键绑定无法插入制表符</h4>
+<p>keymap -&gt; Editor Actions -&gt; Emacs Tab 删除映射</p>
+<p>keymap -&gt; Editor Actions -&gt; Tab 添加 Tab 按键映射</p>
+<p>中文翻译成标签页真让人迷糊, 看到时就觉得编辑器操作里出现一个标签页就十分奇怪</p><ul class="pa0">
   
    <li class="list di">
      <a href="/tags/idea/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">idea</a>
