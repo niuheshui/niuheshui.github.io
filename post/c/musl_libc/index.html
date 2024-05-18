@@ -43,7 +43,7 @@
 <meta itemprop="name" content="Use musl libc">
 <meta itemprop="description" content="不使用 GNU libc , 使用 musl libc 编译运行 c 程序, 并调试 musl libc 源码"><meta itemprop="datePublished" content="2024-04-27T21:18:50+08:00" />
 <meta itemprop="dateModified" content="2024-04-27T21:18:50+08:00" />
-<meta itemprop="wordCount" content="249">
+<meta itemprop="wordCount" content="252">
 <meta itemprop="keywords" content="musl-libc," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Use musl libc"/>
 <meta name="twitter:description" content="不使用 GNU libc , 使用 musl libc 编译运行 c 程序, 并调试 musl libc 源码"/>
 
@@ -145,7 +145,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo make install
 </span></span></code></pre></div><p>默认安装到 <code>/usr/local/musl/</code> 目录下</p>
 <h5 id="编译c程序">编译c程序</h5>
-<p>使用 <code>/usr/local/musl/bin/musl-gcc</code> 编译 <code>c</code> 程序, 可以将这个路径添加到 <code>PATH</code> 环境变量, 或者在 &lsquo;/usr/bin/&rsquo; 创建符号链接, 我选择创建符号链接.</p>
+<p>使用 <code>/usr/local/musl/bin/musl-gcc</code> 编译 <code>c</code> 程序, 可以将这个路径添加到 <code>PATH</code> 环境变量, 或者在 <code>/usr/bin/</code> 创建符号链接, 我选择创建符号链接.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo ln -s /usr/local/musl/bin/musl-gcc /usr/bin/musl-gcc
 </span></span></code></pre></div><p>然后和使用 <code>gcc</code> 一样</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat main.c 
@@ -157,7 +157,7 @@
 </span></span><span style="display:flex;"><span>$ ./main 
 </span></span><span style="display:flex;"><span>HelloWorld
 </span></span></code></pre></div><h5 id="调试musl-libc">调试musl libc</h5>
-<p>编译后源码目录尽量不动, 调试信息中包含编译时源码的绝对路径,  <code>gdb</code> 会根据调试信息去找源码, 如果移动了源码目录, 需要在 <code>gdb</code> 中手动添加源码搜索路径(directory source-path)</p>
+<p>编译后源码目录尽量不动, 调试信息中包含编译时源码的绝对路径(使用 <code>readelf -wi</code> 可以查看调试信息),  <code>gdb</code> 会根据调试信息去找源码, 如果移动了源码目录, 需要在 <code>gdb</code> 中手动添加源码搜索路径(directory source-path)</p>
 <pre tabindex="0"><code>┌─src/stdio/fprintf.c────────────────────────────────────────────┐
 │        1  #include &lt;stdio.h&gt;                                   │
 │        2  #include &lt;stdarg.h&gt;                                  │
