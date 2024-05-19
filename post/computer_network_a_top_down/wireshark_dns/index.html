@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Wireshark DNS | niuheshui.github.io</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="计算机网络自顶向下方法 Wireshark  DNS 实验">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://niuheshui.github.io/post/computer_network_a_top_down/wireshark_dns/">
+    
+
+    <meta property="og:title" content="Wireshark DNS" />
+<meta property="og:description" content="计算机网络自顶向下方法 Wireshark  DNS 实验" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niuheshui.github.io/post/computer_network_a_top_down/wireshark_dns/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-05-19T10:05:32+08:00" />
+<meta property="article:modified_time" content="2024-05-19T10:05:32+08:00" />
+
+<meta itemprop="name" content="Wireshark DNS">
+<meta itemprop="description" content="计算机网络自顶向下方法 Wireshark  DNS 实验"><meta itemprop="datePublished" content="2024-05-19T10:05:32+08:00" />
+<meta itemprop="dateModified" content="2024-05-19T10:05:32+08:00" />
+<meta itemprop="wordCount" content="5251">
+<meta itemprop="keywords" content="Wireshark Lab," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Wireshark DNS"/>
+<meta name="twitter:description" content="计算机网络自顶向下方法 Wireshark  DNS 实验"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        niuheshui.github.io
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About 页">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles 页">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Wireshark DNS</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-05-19T10:05:32+08:00">五月 19, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>实验地址 <a href="https://gaia.cs.umass.edu/kurose_ross/wireshark.php">https://gaia.cs.umass.edu/kurose_ross/wireshark.php</a></p>
+<h2 id="1-nslookup">1. nslookup</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nslookup www.mit.edu
+</span></span><span style="display:flex;"><span>Server:		127.0.0.53
+</span></span><span style="display:flex;"><span>Address:	127.0.0.53#53
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Non-authoritative answer:
+</span></span><span style="display:flex;"><span>www.mit.edu	canonical name <span style="color:#f92672">=</span> www.mit.edu.edgekey.net.
+</span></span><span style="display:flex;"><span>www.mit.edu.edgekey.net	canonical name <span style="color:#f92672">=</span> e9566.dscb.akamaiedge.net.
+</span></span><span style="display:flex;"><span>Name:	e9566.dscb.akamaiedge.net
+</span></span><span style="display:flex;"><span>Address: 23.49.120.120
+</span></span><span style="display:flex;"><span>Name:	e9566.dscb.akamaiedge.net
+</span></span><span style="display:flex;"><span>Address: 2600:1417:8000:c8d::255e
+</span></span><span style="display:flex;"><span>Name:	e9566.dscb.akamaiedge.net
+</span></span><span style="display:flex;"><span>Address: 2600:1417:8000:cae::255e
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nslookup -type<span style="color:#f92672">=</span>NS mit.edu
+</span></span><span style="display:flex;"><span>Server:		127.0.0.53
+</span></span><span style="display:flex;"><span>Address:	127.0.0.53#53
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Non-authoritative answer:
+</span></span><span style="display:flex;"><span>mit.edu	nameserver <span style="color:#f92672">=</span> eur5.akam.net.
+</span></span><span style="display:flex;"><span>mit.edu	nameserver <span style="color:#f92672">=</span> asia2.akam.net.
+</span></span><span style="display:flex;"><span>mit.edu	nameserver <span style="color:#f92672">=</span> ns1-37.akam.net.
+</span></span><span style="display:flex;"><span>mit.edu	nameserver <span style="color:#f92672">=</span> use2.akam.net.
+</span></span><span style="display:flex;"><span>mit.edu	nameserver <span style="color:#f92672">=</span> usw2.akam.net.
+</span></span><span style="display:flex;"><span>mit.edu	nameserver <span style="color:#f92672">=</span> asia1.akam.net.
+</span></span><span style="display:flex;"><span>mit.edu	nameserver <span style="color:#f92672">=</span> use5.akam.net.
+</span></span><span style="display:flex;"><span>mit.edu	nameserver <span style="color:#f92672">=</span> ns1-173.akam.net.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Authoritative answers can be found from:
+</span></span><span style="display:flex;"><span>usw2.akam.net	internet address <span style="color:#f92672">=</span> 184.26.161.64
+</span></span><span style="display:flex;"><span>asia1.akam.net	internet address <span style="color:#f92672">=</span> 95.100.175.64
+</span></span><span style="display:flex;"><span>use5.akam.net	internet address <span style="color:#f92672">=</span> 2.16.40.64
+</span></span><span style="display:flex;"><span>ns1-173.akam.net	internet address <span style="color:#f92672">=</span> 193.108.91.173
+</span></span><span style="display:flex;"><span>eur5.akam.net	internet address <span style="color:#f92672">=</span> 23.74.25.64
+</span></span><span style="display:flex;"><span>asia2.akam.net	internet address <span style="color:#f92672">=</span> 95.101.36.64
+</span></span><span style="display:flex;"><span>ns1-37.akam.net	internet address <span style="color:#f92672">=</span> 193.108.91.37
+</span></span><span style="display:flex;"><span>use2.akam.net	internet address <span style="color:#f92672">=</span> 96.7.49.64
+</span></span><span style="display:flex;"><span>use5.akam.net	has AAAA address 2600:1403:a::40
+</span></span><span style="display:flex;"><span>ns1-173.akam.net	has AAAA address 2600:1401:2::ad
+</span></span><span style="display:flex;"><span>ns1-37.akam.net	has AAAA address 2600:1401:2::25
+</span></span></code></pre></div><p>nslookup –option1 –option2 host-to-find dns-server</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nslookup www.aiit.or.kr 8.8.8.8
+</span></span><span style="display:flex;"><span>Server:		8.8.8.8
+</span></span><span style="display:flex;"><span>Address:	8.8.8.8#53
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Non-authoritative answer:
+</span></span><span style="display:flex;"><span>Name:	www.aiit.or.kr
+</span></span><span style="display:flex;"><span>Address: 58.229.6.225
+</span></span></code></pre></div><ol>
+<li>Run nslookup to obtain the IP address of a Web server in Asia. What is the IP
+address of that server?</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nslookup www.baidu.com 
+</span></span><span style="display:flex;"><span>Server:		127.0.0.53
+</span></span><span style="display:flex;"><span>Address:	127.0.0.53#53
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Non-authoritative answer:
+</span></span><span style="display:flex;"><span>www.baidu.com	canonical name <span style="color:#f92672">=</span> www.a.shifen.com.
+</span></span><span style="display:flex;"><span>Name:	www.a.shifen.com
+</span></span><span style="display:flex;"><span>Address: 182.61.200.7
+</span></span><span style="display:flex;"><span>Name:	www.a.shifen.com
+</span></span><span style="display:flex;"><span>Address: 182.61.200.6
+</span></span><span style="display:flex;"><span>Name:	www.a.shifen.com
+</span></span><span style="display:flex;"><span>Address: 240c:4003:111:3f1f:0:ff:b0ea:3686
+</span></span><span style="display:flex;"><span>Name:	www.a.shifen.com
+</span></span><span style="display:flex;"><span>Address: 240c:4003:111:f4c0:0:ff:b07c:1608
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ nslookup www.baidu.com 8.8.8.8
+</span></span><span style="display:flex;"><span>Server:		8.8.8.8
+</span></span><span style="display:flex;"><span>Address:	8.8.8.8#53
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Non-authoritative answer:
+</span></span><span style="display:flex;"><span>www.baidu.com	canonical name <span style="color:#f92672">=</span> www.a.shifen.com.
+</span></span><span style="display:flex;"><span>Name:	www.a.shifen.com
+</span></span><span style="display:flex;"><span>Address: 39.156.66.18
+</span></span><span style="display:flex;"><span>Name:	www.a.shifen.com
+</span></span><span style="display:flex;"><span>Address: 39.156.66.14
+</span></span><span style="display:flex;"><span>Name:	www.a.shifen.com
+</span></span><span style="display:flex;"><span>Address: 2409:8c00:6c21:104f:0:ff:b03f:3ae
+</span></span><span style="display:flex;"><span>Name:	www.a.shifen.com
+</span></span><span style="display:flex;"><span>Address: 2409:8c00:6c21:1051:0:ff:b0af:279a
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ nslookup www.bilibili.com
+</span></span><span style="display:flex;"><span>Server:		127.0.0.53
+</span></span><span style="display:flex;"><span>Address:	127.0.0.53#53
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Non-authoritative answer:
+</span></span><span style="display:flex;"><span>www.bilibili.com	canonical name <span style="color:#f92672">=</span> a.w.bilicdn1.com.
+</span></span><span style="display:flex;"><span>Name:	a.w.bilicdn1.com
+</span></span><span style="display:flex;"><span>Address: 121.194.11.72
+</span></span><span style="display:flex;"><span>Name:	a.w.bilicdn1.com
+</span></span><span style="display:flex;"><span>Address: 121.194.11.73
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ nslookup bilibili.com
+</span></span><span style="display:flex;"><span>Server:		127.0.0.53
+</span></span><span style="display:flex;"><span>Address:	127.0.0.53#53
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Non-authoritative answer:
+</span></span><span style="display:flex;"><span>Name:	bilibili.com
+</span></span><span style="display:flex;"><span>Address: 139.159.241.37
+</span></span><span style="display:flex;"><span>Name:	bilibili.com
+</span></span><span style="display:flex;"><span>Address: 8.134.50.24
+</span></span><span style="display:flex;"><span>Name:	bilibili.com
+</span></span><span style="display:flex;"><span>Address: 47.103.24.173
+</span></span><span style="display:flex;"><span>Name:	bilibili.com
+</span></span><span style="display:flex;"><span>Address: 119.3.70.188
+</span></span></code></pre></div><ol start="2">
+<li>Run nslookup to determine the authoritative DNS servers for a university in
+<del>Europe</del> Asia.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nslookup -type<span style="color:#f92672">=</span>NS tsinghua.edu.cn
+</span></span><span style="display:flex;"><span>Server:		127.0.0.53
+</span></span><span style="display:flex;"><span>Address:	127.0.0.53#53
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Non-authoritative answer:
+</span></span><span style="display:flex;"><span>tsinghua.edu.cn	nameserver <span style="color:#f92672">=</span> dns2.tsinghua.edu.cn.
+</span></span><span style="display:flex;"><span>tsinghua.edu.cn	nameserver <span style="color:#f92672">=</span> dns.tsinghua.edu.cn.
+</span></span><span style="display:flex;"><span>tsinghua.edu.cn	nameserver <span style="color:#f92672">=</span> dns.edu.cn.
+</span></span><span style="display:flex;"><span>tsinghua.edu.cn	nameserver <span style="color:#f92672">=</span> dns2.edu.cn.
+</span></span><span style="display:flex;"><span>tsinghua.edu.cn	nameserver <span style="color:#f92672">=</span> ns5.cernet.net.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Authoritative answers can be found from:
+</span></span><span style="display:flex;"><span>dns2.edu.cn	internet address <span style="color:#f92672">=</span> 202.112.0.13
+</span></span><span style="display:flex;"><span>ns5.cernet.net	internet address <span style="color:#f92672">=</span> 137.189.6.21
+</span></span><span style="display:flex;"><span>ns5.cernet.net	internet address <span style="color:#f92672">=</span> 166.111.8.30
+</span></span><span style="display:flex;"><span>dns2.tsinghua.edu.cn	internet address <span style="color:#f92672">=</span> 166.111.8.31
+</span></span><span style="display:flex;"><span>dns.tsinghua.edu.cn	internet address <span style="color:#f92672">=</span> 166.111.8.30
+</span></span><span style="display:flex;"><span>dns.edu.cn	internet address <span style="color:#f92672">=</span> 202.38.109.35
+</span></span><span style="display:flex;"><span>dns2.edu.cn	has AAAA address 2001:da8:1:100::13
+</span></span><span style="display:flex;"><span>ns5.cernet.net	has AAAA address 2402:f000:1:801::8:30
+</span></span><span style="display:flex;"><span>ns5.cernet.net	has AAAA address 2405:3000:3:6::15
+</span></span><span style="display:flex;"><span>dns2.tsinghua.edu.cn	has AAAA address 2402:f000:1:801::8:31
+</span></span><span style="display:flex;"><span>dns.tsinghua.edu.cn	has AAAA address 2402:f000:1:801::8:30
+</span></span><span style="display:flex;"><span>dns.edu.cn	has AAAA address 2001:250:c006::35
+</span></span></code></pre></div><h2 id="2-ipconfig">2. ipconfig</h2>
+<p>ubuntu22.04 中有关 DNS 信息</p>
+<ol>
+<li>
+<p><strong>查看 /etc/resolv.conf 文件</strong>：</p>
+<p>打开终端并输入以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /etc/resolv.conf
+</span></span></code></pre></div><p>在输出中，你会看到一行或多行以 &ldquo;nameserver&rdquo; 开头的条目，每个条目后面跟着一个 IP 地址。这些 IP 地址就是当前系统配置的 DNS 服务器。</p>
+</li>
+<li>
+<p><strong>使用 nmcli 命令</strong>：</p>
+<p>如果你的系统使用 NetworkManager 来管理网络连接，你可以使用 <code>nmcli</code> 命令来查看网络配置信息，包括 DNS 服务器的 IP 地址。在终端中输入以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmcli dev show | grep <span style="color:#e6db74">&#39;IP4.DNS&#39;</span>
+</span></span></code></pre></div><p>这将显示当前网络设备配置的 IPv4 DNS 服务器的 IP 地址。</p>
+</li>
+<li>
+<p><strong>使用 resolvectl 命令</strong>：</p>
+<p>如果你的系统使用 systemd-resolved 来管理 DNS 解析，你可以使用 <code>resolvectl</code> 命令来查看 DNS 配置信息。在终端中输入以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>resolvectl status | grep <span style="color:#e6db74">&#39;DNS Servers&#39;</span>
+</span></span></code></pre></div><p>这将显示当前系统使用的 DNS 服务器的 IP 地址。</p>
+</li>
+</ol>
+<h2 id="3-tracing-dns-with-wireshark">3. Tracing DNS with Wireshark</h2>
+<h3 id="1-nslookup-wwwmitedu">1. nslookup <a href="https://www.mit.edu">www.mit.edu</a></h3>
+<p>Request</p>
+<pre tabindex="0"><code>Frame 1: 82 bytes on wire (656 bits), 82 bytes captured (656 bits) on interface wlp4s0, id 0
+    Interface id: 0 (wlp4s0)
+        Interface name: wlp4s0
+    Encapsulation type: Ethernet (1)
+    Arrival Time: May 19, 2024 14:48:25.642844483 CST
+    [Time shift for this packet: 0.000000000 seconds]
+    Epoch Time: 1716101305.642844483 seconds
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 0.000000000 seconds]
+    [Time since reference or first frame: 0.000000000 seconds]
+    Frame Number: 1
+    Frame Length: 82 bytes (656 bits)
+    Capture Length: 82 bytes (656 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: eth:ethertype:ip:udp:dns]
+    [Coloring Rule Name: UDP]
+    [Coloring Rule String: udp]
+Ethernet II, Src: IntelCor_54:4f:20 (f4:b3:01:54:4f:20), Dst: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+    Destination: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        Address: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Source: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        Address: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 10.124.17.123, Dst: 211.67.177.65
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+        0000 00.. = Differentiated Services Codepoint: Default (0)
+        .... ..00 = Explicit Congestion Notification: Not ECN-Capable Transport (0)
+    Total Length: 68
+    Identification: 0x8263 (33379)
+    Flags: 0x00
+        0... .... = Reserved bit: Not set
+        .0.. .... = Don&#39;t fragment: Not set
+        ..0. .... = More fragments: Not set
+    ...0 0000 0000 0000 = Fragment Offset: 0
+    Time to Live: 64
+    Protocol: UDP (17)
+    Header Checksum: 0x57ca [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 10.124.17.123
+    Destination Address: 211.67.177.65
+User Datagram Protocol, Src Port: 49857, Dst Port: 53
+    Source Port: 49857
+    Destination Port: 53
+    Length: 48
+    Checksum: 0xa0bd [unverified]
+    [Checksum Status: Unverified]
+    [Stream index: 0]
+    [Timestamps]
+        [Time since first frame: 0.000000000 seconds]
+        [Time since previous frame: 0.000000000 seconds]
+    UDP payload (40 bytes)
+Domain Name System (query)
+    Transaction ID: 0x5219
+    Flags: 0x0100 Standard query
+        0... .... .... .... = Response: Message is a query
+        .000 0... .... .... = Opcode: Standard query (0)
+        .... ..0. .... .... = Truncated: Message is not truncated
+        .... ...1 .... .... = Recursion desired: Do query recursively
+        .... .... .0.. .... = Z: reserved (0)
+        .... .... ...0 .... = Non-authenticated data: Unacceptable
+    Questions: 1
+    Answer RRs: 0
+    Authority RRs: 0
+    Additional RRs: 1
+    Queries
+        www.mit.edu: type A, class IN
+            Name: www.mit.edu
+            [Name Length: 11]
+            [Label Count: 3]
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+    Additional records
+        &lt;Root&gt;: type OPT
+            Name: &lt;Root&gt;
+            Type: OPT (41)
+            UDP payload size: 1472
+            Higher bits in extended RCODE: 0x00
+            EDNS0 version: 0
+            Z: 0x0000
+                0... .... .... .... = DO bit: Cannot handle DNSSEC security RRs
+                .000 0000 0000 0000 = Reserved: 0x0000
+            Data length: 0
+    [Response In: 2]
+
+0000   48 81 d4 e6 ae 61 f4 b3 01 54 4f 20 08 00 45 00   H....a...TO ..E.
+0010   00 44 82 63 00 00 40 11 57 ca 0a 7c 11 7b d3 43   .D.c..@.W..|.{.C
+0020   b1 41 c2 c1 00 35 00 30 a0 bd 52 19 01 00 00 01   .A...5.0..R.....
+0030   00 00 00 00 00 01 03 77 77 77 03 6d 69 74 03 65   .......www.mit.e
+0040   64 75 00 00 01 00 01 00 00 29 05 c0 00 00 00 00   du.......)......
+0050   00 00                                             ..
+</code></pre><p>Response</p>
+<pre tabindex="0"><code>Frame 2: 174 bytes on wire (1392 bits), 174 bytes captured (1392 bits) on interface wlp4s0, id 0
+    Interface id: 0 (wlp4s0)
+        Interface name: wlp4s0
+    Encapsulation type: Ethernet (1)
+    Arrival Time: May 19, 2024 14:48:26.029891104 CST
+    [Time shift for this packet: 0.000000000 seconds]
+    Epoch Time: 1716101306.029891104 seconds
+    [Time delta from previous captured frame: 0.387046621 seconds]
+    [Time delta from previous displayed frame: 0.387046621 seconds]
+    [Time since reference or first frame: 0.387046621 seconds]
+    Frame Number: 2
+    Frame Length: 174 bytes (1392 bits)
+    Capture Length: 174 bytes (1392 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: eth:ethertype:ip:udp:dns]
+    [Coloring Rule Name: UDP]
+    [Coloring Rule String: udp]
+Ethernet II, Src: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61), Dst: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+    Destination: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        Address: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Source: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        Address: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 211.67.177.65, Dst: 10.124.17.123
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+        0000 00.. = Differentiated Services Codepoint: Default (0)
+        .... ..00 = Explicit Congestion Notification: Not ECN-Capable Transport (0)
+    Total Length: 160
+    Identification: 0x0000 (0)
+    Flags: 0x40, Don&#39;t fragment
+        0... .... = Reserved bit: Not set
+        .1.. .... = Don&#39;t fragment: Set
+        ..0. .... = More fragments: Not set
+    ...0 0000 0000 0000 = Fragment Offset: 0
+    Time to Live: 62
+    Protocol: UDP (17)
+    Header Checksum: 0x9bd1 [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 211.67.177.65
+    Destination Address: 10.124.17.123
+User Datagram Protocol, Src Port: 53, Dst Port: 49857
+    Source Port: 53
+    Destination Port: 49857
+    Length: 140
+    Checksum: 0xf003 [unverified]
+    [Checksum Status: Unverified]
+    [Stream index: 0]
+    [Timestamps]
+        [Time since first frame: 0.387046621 seconds]
+        [Time since previous frame: 0.387046621 seconds]
+    UDP payload (132 bytes)
+Domain Name System (response)
+    Transaction ID: 0x5219
+    Flags: 0x8180 Standard query response, No error
+        1... .... .... .... = Response: Message is a response
+        .000 0... .... .... = Opcode: Standard query (0)
+        .... .0.. .... .... = Authoritative: Server is not an authority for domain
+        .... ..0. .... .... = Truncated: Message is not truncated
+        .... ...1 .... .... = Recursion desired: Do query recursively
+        .... .... 1... .... = Recursion available: Server can do recursive queries
+        .... .... .0.. .... = Z: reserved (0)
+        .... .... ..0. .... = Answer authenticated: Answer/authority portion was not authenticated by the server
+        .... .... ...0 .... = Non-authenticated data: Unacceptable
+        .... .... .... 0000 = Reply code: No error (0)
+    Questions: 1
+    Answer RRs: 3
+    Authority RRs: 0
+    Additional RRs: 1
+    Queries
+        www.mit.edu: type A, class IN
+            Name: www.mit.edu
+            [Name Length: 11]
+            [Label Count: 3]
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+    Answers
+        www.mit.edu: type CNAME, class IN, cname www.mit.edu.edgekey.net
+            Name: www.mit.edu
+            Type: CNAME (Canonical NAME for an alias) (5)
+            Class: IN (0x0001)
+            Time to live: 1692 (28 minutes, 12 seconds)
+            Data length: 25
+            CNAME: www.mit.edu.edgekey.net
+        www.mit.edu.edgekey.net: type CNAME, class IN, cname e9566.dscb.akamaiedge.net
+            Name: www.mit.edu.edgekey.net
+            Type: CNAME (Canonical NAME for an alias) (5)
+            Class: IN (0x0001)
+            Time to live: 60 (1 minute)
+            Data length: 27
+            CNAME: e9566.dscb.akamaiedge.net
+        e9566.dscb.akamaiedge.net: type A, class IN, addr 23.49.120.120
+            Name: e9566.dscb.akamaiedge.net
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+            Time to live: 20 (20 seconds)
+            Data length: 4
+            Address: 23.49.120.120
+    Additional records
+        &lt;Root&gt;: type OPT
+            Name: &lt;Root&gt;
+            Type: OPT (41)
+            UDP payload size: 1232
+            Higher bits in extended RCODE: 0x00
+            EDNS0 version: 0
+            Z: 0x0000
+                0... .... .... .... = DO bit: Cannot handle DNSSEC security RRs
+                .000 0000 0000 0000 = Reserved: 0x0000
+            Data length: 0
+    [Request In: 1]
+    [Time: 0.387046621 seconds]
+
+0000   f4 b3 01 54 4f 20 48 81 d4 e6 ae 61 08 00 45 00   ...TO H....a..E.
+0010   00 a0 00 00 40 00 3e 11 9b d1 d3 43 b1 41 0a 7c   ....@.&gt;....C.A.|
+0020   11 7b 00 35 c2 c1 00 8c f0 03 52 19 81 80 00 01   .{.5......R.....
+0030   00 03 00 00 00 01 03 77 77 77 03 6d 69 74 03 65   .......www.mit.e
+0040   64 75 00 00 01 00 01 c0 0c 00 05 00 01 00 00 06   du..............
+0050   9c 00 19 03 77 77 77 03 6d 69 74 03 65 64 75 07   ....www.mit.edu.
+0060   65 64 67 65 6b 65 79 03 6e 65 74 00 c0 29 00 05   edgekey.net..)..
+0070   00 01 00 00 00 3c 00 1b 05 65 39 35 36 36 04 64   .....&lt;...e9566.d
+0080   73 63 62 0a 61 6b 61 6d 61 69 65 64 67 65 03 6e   scb.akamaiedge.n
+0090   65 74 00 c0 4e 00 01 00 01 00 00 00 14 00 04 17   et..N...........
+00a0   31 78 78 00 00 29 04 d0 00 00 00 00 00 00         1xx..)........
+</code></pre><h3 id="2-nslookup--typens-mitedu">2. nslookup -type=NS mit.edu</h3>
+<p>Resquest</p>
+<pre tabindex="0"><code>Frame 1: 78 bytes on wire (624 bits), 78 bytes captured (624 bits) on interface wlp4s0, id 0
+    Interface id: 0 (wlp4s0)
+        Interface name: wlp4s0
+    Encapsulation type: Ethernet (1)
+    Arrival Time: May 19, 2024 15:00:37.008985969 CST
+    [Time shift for this packet: 0.000000000 seconds]
+    Epoch Time: 1716102037.008985969 seconds
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 0.000000000 seconds]
+    [Time since reference or first frame: 0.000000000 seconds]
+    Frame Number: 1
+    Frame Length: 78 bytes (624 bits)
+    Capture Length: 78 bytes (624 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: eth:ethertype:ip:udp:dns]
+    [Coloring Rule Name: UDP]
+    [Coloring Rule String: udp]
+Ethernet II, Src: IntelCor_54:4f:20 (f4:b3:01:54:4f:20), Dst: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+    Destination: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        Address: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Source: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        Address: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 10.124.17.123, Dst: 211.67.177.65
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+        0000 00.. = Differentiated Services Codepoint: Default (0)
+        .... ..00 = Explicit Congestion Notification: Not ECN-Capable Transport (0)
+    Total Length: 64
+    Identification: 0xe7c5 (59333)
+    Flags: 0x00
+        0... .... = Reserved bit: Not set
+        .0.. .... = Don&#39;t fragment: Not set
+        ..0. .... = More fragments: Not set
+    ...0 0000 0000 0000 = Fragment Offset: 0
+    Time to Live: 64
+    Protocol: UDP (17)
+    Header Checksum: 0xf26b [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 10.124.17.123
+    Destination Address: 211.67.177.65
+User Datagram Protocol, Src Port: 56623, Dst Port: 53
+    Source Port: 56623
+    Destination Port: 53
+    Length: 44
+    Checksum: 0xa0b9 [unverified]
+    [Checksum Status: Unverified]
+    [Stream index: 0]
+    [Timestamps]
+        [Time since first frame: 0.000000000 seconds]
+        [Time since previous frame: 0.000000000 seconds]
+    UDP payload (36 bytes)
+Domain Name System (query)
+    Transaction ID: 0xfb87
+    Flags: 0x0100 Standard query
+        0... .... .... .... = Response: Message is a query
+        .000 0... .... .... = Opcode: Standard query (0)
+        .... ..0. .... .... = Truncated: Message is not truncated
+        .... ...1 .... .... = Recursion desired: Do query recursively
+        .... .... .0.. .... = Z: reserved (0)
+        .... .... ...0 .... = Non-authenticated data: Unacceptable
+    Questions: 1
+    Answer RRs: 0
+    Authority RRs: 0
+    Additional RRs: 1
+    Queries
+        mit.edu: type NS, class IN
+            Name: mit.edu
+            [Name Length: 7]
+            [Label Count: 2]
+            Type: NS (authoritative Name Server) (2)
+            Class: IN (0x0001)
+    Additional records
+        &lt;Root&gt;: type OPT
+            Name: &lt;Root&gt;
+            Type: OPT (41)
+            UDP payload size: 1472
+            Higher bits in extended RCODE: 0x00
+            EDNS0 version: 0
+            Z: 0x0000
+                0... .... .... .... = DO bit: Cannot handle DNSSEC security RRs
+                .000 0000 0000 0000 = Reserved: 0x0000
+            Data length: 0
+    [Response In: 2]
+
+0000   48 81 d4 e6 ae 61 f4 b3 01 54 4f 20 08 00 45 00   H....a...TO ..E.
+0010   00 40 e7 c5 00 00 40 11 f2 6b 0a 7c 11 7b d3 43   .@....@..k.|.{.C
+0020   b1 41 dd 2f 00 35 00 2c a0 b9 fb 87 01 00 00 01   .A./.5.,........
+0030   00 00 00 00 00 01 03 6d 69 74 03 65 64 75 00 00   .......mit.edu..
+0040   02 00 01 00 00 29 05 c0 00 00 00 00 00 00         .....)........
+</code></pre><p>Response</p>
+<pre tabindex="0"><code>Frame 2: 457 bytes on wire (3656 bits), 457 bytes captured (3656 bits) on interface wlp4s0, id 0
+    Interface id: 0 (wlp4s0)
+        Interface name: wlp4s0
+    Encapsulation type: Ethernet (1)
+    Arrival Time: May 19, 2024 15:00:37.013045474 CST
+    [Time shift for this packet: 0.000000000 seconds]
+    Epoch Time: 1716102037.013045474 seconds
+    [Time delta from previous captured frame: 0.004059505 seconds]
+    [Time delta from previous displayed frame: 0.004059505 seconds]
+    [Time since reference or first frame: 0.004059505 seconds]
+    Frame Number: 2
+    Frame Length: 457 bytes (3656 bits)
+    Capture Length: 457 bytes (3656 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: eth:ethertype:ip:udp:dns]
+    [Coloring Rule Name: UDP]
+    [Coloring Rule String: udp]
+Ethernet II, Src: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61), Dst: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+    Destination: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        Address: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Source: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        Address: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 211.67.177.65, Dst: 10.124.17.123
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+        0000 00.. = Differentiated Services Codepoint: Default (0)
+        .... ..00 = Explicit Congestion Notification: Not ECN-Capable Transport (0)
+    Total Length: 443
+    Identification: 0x0000 (0)
+    Flags: 0x40, Don&#39;t fragment
+        0... .... = Reserved bit: Not set
+        .1.. .... = Don&#39;t fragment: Set
+        ..0. .... = More fragments: Not set
+    ...0 0000 0000 0000 = Fragment Offset: 0
+    Time to Live: 62
+    Protocol: UDP (17)
+    Header Checksum: 0x9ab6 [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 211.67.177.65
+    Destination Address: 10.124.17.123
+User Datagram Protocol, Src Port: 53, Dst Port: 56623
+    Source Port: 53
+    Destination Port: 56623
+    Length: 423
+    Checksum: 0xf396 [unverified]
+    [Checksum Status: Unverified]
+    [Stream index: 0]
+    [Timestamps]
+        [Time since first frame: 0.004059505 seconds]
+        [Time since previous frame: 0.004059505 seconds]
+    UDP payload (415 bytes)
+Domain Name System (response)
+    Transaction ID: 0xfb87
+    Flags: 0x8180 Standard query response, No error
+        1... .... .... .... = Response: Message is a response
+        .000 0... .... .... = Opcode: Standard query (0)
+        .... .0.. .... .... = Authoritative: Server is not an authority for domain
+        .... ..0. .... .... = Truncated: Message is not truncated
+        .... ...1 .... .... = Recursion desired: Do query recursively
+        .... .... 1... .... = Recursion available: Server can do recursive queries
+        .... .... .0.. .... = Z: reserved (0)
+        .... .... ..0. .... = Answer authenticated: Answer/authority portion was not authenticated by the server
+        .... .... ...0 .... = Non-authenticated data: Unacceptable
+        .... .... .... 0000 = Reply code: No error (0)
+    Questions: 1
+    Answer RRs: 8
+    Authority RRs: 0
+    Additional RRs: 12
+    Queries
+        mit.edu: type NS, class IN
+            Name: mit.edu
+            [Name Length: 7]
+            [Label Count: 2]
+            Type: NS (authoritative Name Server) (2)
+            Class: IN (0x0001)
+    Answers
+        mit.edu: type NS, class IN, ns use5.akam.net
+            Name: mit.edu
+            Type: NS (authoritative Name Server) (2)
+            Class: IN (0x0001)
+            Time to live: 1723 (28 minutes, 43 seconds)
+            Data length: 15
+            Name Server: use5.akam.net
+        mit.edu: type NS, class IN, ns asia1.akam.net
+            Name: mit.edu
+            Type: NS (authoritative Name Server) (2)
+            Class: IN (0x0001)
+            Time to live: 1723 (28 minutes, 43 seconds)
+            Data length: 8
+            Name Server: asia1.akam.net
+        mit.edu: type NS, class IN, ns eur5.akam.net
+            Name: mit.edu
+            Type: NS (authoritative Name Server) (2)
+            Class: IN (0x0001)
+            Time to live: 1723 (28 minutes, 43 seconds)
+            Data length: 7
+            Name Server: eur5.akam.net
+        mit.edu: type NS, class IN, ns ns1-37.akam.net
+            Name: mit.edu
+            Type: NS (authoritative Name Server) (2)
+            Class: IN (0x0001)
+            Time to live: 1723 (28 minutes, 43 seconds)
+            Data length: 9
+            Name Server: ns1-37.akam.net
+        mit.edu: type NS, class IN, ns usw2.akam.net
+            Name: mit.edu
+            Type: NS (authoritative Name Server) (2)
+            Class: IN (0x0001)
+            Time to live: 1723 (28 minutes, 43 seconds)
+            Data length: 7
+            Name Server: usw2.akam.net
+        mit.edu: type NS, class IN, ns use2.akam.net
+            Name: mit.edu
+            Type: NS (authoritative Name Server) (2)
+            Class: IN (0x0001)
+            Time to live: 1723 (28 minutes, 43 seconds)
+            Data length: 7
+            Name Server: use2.akam.net
+        mit.edu: type NS, class IN, ns asia2.akam.net
+            Name: mit.edu
+            Type: NS (authoritative Name Server) (2)
+            Class: IN (0x0001)
+            Time to live: 1723 (28 minutes, 43 seconds)
+            Data length: 8
+            Name Server: asia2.akam.net
+        mit.edu: type NS, class IN, ns ns1-173.akam.net
+            Name: mit.edu
+            Type: NS (authoritative Name Server) (2)
+            Class: IN (0x0001)
+            Time to live: 1723 (28 minutes, 43 seconds)
+            Data length: 10
+            Name Server: ns1-173.akam.net
+    Additional records
+        ns1-37.akam.net: type A, class IN, addr 193.108.91.37
+            Name: ns1-37.akam.net
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+            Time to live: 1118 (18 minutes, 38 seconds)
+            Data length: 4
+            Address: 193.108.91.37
+        usw2.akam.net: type A, class IN, addr 184.26.161.64
+            Name: usw2.akam.net
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+            Time to live: 82092 (22 hours, 48 minutes, 12 seconds)
+            Data length: 4
+            Address: 184.26.161.64
+        use2.akam.net: type A, class IN, addr 96.7.49.64
+            Name: use2.akam.net
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+            Time to live: 50686 (14 hours, 4 minutes, 46 seconds)
+            Data length: 4
+            Address: 96.7.49.64
+        asia2.akam.net: type A, class IN, addr 95.101.36.64
+            Name: asia2.akam.net
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+            Time to live: 85654 (23 hours, 47 minutes, 34 seconds)
+            Data length: 4
+            Address: 95.101.36.64
+        ns1-173.akam.net: type A, class IN, addr 193.108.91.173
+            Name: ns1-173.akam.net
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+            Time to live: 1118 (18 minutes, 38 seconds)
+            Data length: 4
+            Address: 193.108.91.173
+        use5.akam.net: type A, class IN, addr 2.16.40.64
+            Name: use5.akam.net
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+            Time to live: 82691 (22 hours, 58 minutes, 11 seconds)
+            Data length: 4
+            Address: 2.16.40.64
+        asia1.akam.net: type A, class IN, addr 95.100.175.64
+            Name: asia1.akam.net
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+            Time to live: 50582 (14 hours, 3 minutes, 2 seconds)
+            Data length: 4
+            Address: 95.100.175.64
+        eur5.akam.net: type A, class IN, addr 23.74.25.64
+            Name: eur5.akam.net
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+            Time to live: 55783 (15 hours, 29 minutes, 43 seconds)
+            Data length: 4
+            Address: 23.74.25.64
+        ns1-37.akam.net: type AAAA, class IN, addr 2600:1401:2::25
+            Name: ns1-37.akam.net
+            Type: AAAA (IPv6 Address) (28)
+            Class: IN (0x0001)
+            Time to live: 1118 (18 minutes, 38 seconds)
+            Data length: 16
+            AAAA Address: 2600:1401:2::25
+        ns1-173.akam.net: type AAAA, class IN, addr 2600:1401:2::ad
+            Name: ns1-173.akam.net
+            Type: AAAA (IPv6 Address) (28)
+            Class: IN (0x0001)
+            Time to live: 1118 (18 minutes, 38 seconds)
+            Data length: 16
+            AAAA Address: 2600:1401:2::ad
+        use5.akam.net: type AAAA, class IN, addr 2600:1403:a::40
+            Name: use5.akam.net
+            Type: AAAA (IPv6 Address) (28)
+            Class: IN (0x0001)
+            Time to live: 82691 (22 hours, 58 minutes, 11 seconds)
+            Data length: 16
+            AAAA Address: 2600:1403:a::40
+        &lt;Root&gt;: type OPT
+            Name: &lt;Root&gt;
+            Type: OPT (41)
+            UDP payload size: 1232
+            Higher bits in extended RCODE: 0x00
+            EDNS0 version: 0
+            Z: 0x0000
+                0... .... .... .... = DO bit: Cannot handle DNSSEC security RRs
+                .000 0000 0000 0000 = Reserved: 0x0000
+            Data length: 0
+    [Request In: 1]
+    [Time: 0.004059505 seconds]
+
+0000   f4 b3 01 54 4f 20 48 81 d4 e6 ae 61 08 00 45 00   ...TO H....a..E.
+0010   01 bb 00 00 40 00 3e 11 9a b6 d3 43 b1 41 0a 7c   ....@.&gt;....C.A.|
+0020   11 7b 00 35 dd 2f 01 a7 f3 96 fb 87 81 80 00 01   .{.5./..........
+0030   00 08 00 00 00 0c 03 6d 69 74 03 65 64 75 00 00   .......mit.edu..
+0040   02 00 01 c0 0c 00 02 00 01 00 00 06 bb 00 0f 04   ................
+0050   75 73 65 35 04 61 6b 61 6d 03 6e 65 74 00 c0 0c   use5.akam.net...
+0060   00 02 00 01 00 00 06 bb 00 08 05 61 73 69 61 31   ...........asia1
+0070   c0 2a c0 0c 00 02 00 01 00 00 06 bb 00 07 04 65   .*.............e
+0080   75 72 35 c0 2a c0 0c 00 02 00 01 00 00 06 bb 00   ur5.*...........
+0090   09 06 6e 73 31 2d 33 37 c0 2a c0 0c 00 02 00 01   ..ns1-37.*......
+00a0   00 00 06 bb 00 07 04 75 73 77 32 c0 2a c0 0c 00   .......usw2.*...
+00b0   02 00 01 00 00 06 bb 00 07 04 75 73 65 32 c0 2a   ..........use2.*
+00c0   c0 0c 00 02 00 01 00 00 06 bb 00 08 05 61 73 69   .............asi
+00d0   61 32 c0 2a c0 0c 00 02 00 01 00 00 06 bb 00 0a   a2.*............
+00e0   07 6e 73 31 2d 31 37 33 c0 2a c0 67 00 01 00 01   .ns1-173.*.g....
+00f0   00 00 04 5e 00 04 c1 6c 5b 25 c0 7c 00 01 00 01   ...^...l[%.|....
+0100   00 01 40 ac 00 04 b8 1a a1 40 c0 8f 00 01 00 01   ..@......@......
+0110   00 00 c5 fe 00 04 60 07 31 40 c0 a2 00 01 00 01   ......`.1@......
+0120   00 01 4e 96 00 04 5f 65 24 40 c0 b6 00 01 00 01   ..N..._e$@......
+0130   00 00 04 5e 00 04 c1 6c 5b ad c0 25 00 01 00 01   ...^...l[..%....
+0140   00 01 43 03 00 04 02 10 28 40 c0 40 00 01 00 01   ..C.....(@.@....
+0150   00 00 c5 96 00 04 5f 64 af 40 c0 54 00 01 00 01   ......_d.@.T....
+0160   00 00 d9 e7 00 04 17 4a 19 40 c0 67 00 1c 00 01   .......J.@.g....
+0170   00 00 04 5e 00 10 26 00 14 01 00 02 00 00 00 00   ...^..&amp;.........
+0180   00 00 00 00 00 25 c0 b6 00 1c 00 01 00 00 04 5e   .....%.........^
+0190   00 10 26 00 14 01 00 02 00 00 00 00 00 00 00 00   ..&amp;.............
+01a0   00 ad c0 25 00 1c 00 01 00 01 43 03 00 10 26 00   ...%......C...&amp;.
+01b0   14 03 00 0a 00 00 00 00 00 00 00 00 00 40 00 00   .............@..
+01c0   29 04 d0 00 00 00 00 00 00                        )........
+</code></pre><h3 id="3-nslookup-wwwaiitorkr-8888">3. nslookup <a href="https://www.aiit.or.kr">www.aiit.or.kr</a> 8.8.8.8</h3>
+<p>Request</p>
+<pre tabindex="0"><code>Frame 2: 74 bytes on wire (592 bits), 74 bytes captured (592 bits) on interface wlp4s0, id 0
+    Interface id: 0 (wlp4s0)
+        Interface name: wlp4s0
+    Encapsulation type: Ethernet (1)
+    Arrival Time: May 19, 2024 15:03:00.001360706 CST
+    [Time shift for this packet: 0.000000000 seconds]
+    Epoch Time: 1716102180.001360706 seconds
+    [Time delta from previous captured frame: 0.280523821 seconds]
+    [Time delta from previous displayed frame: 0.280523821 seconds]
+    [Time since reference or first frame: 0.280523821 seconds]
+    Frame Number: 2
+    Frame Length: 74 bytes (592 bits)
+    Capture Length: 74 bytes (592 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: eth:ethertype:ip:udp:dns]
+    [Coloring Rule Name: UDP]
+    [Coloring Rule String: udp]
+Ethernet II, Src: IntelCor_54:4f:20 (f4:b3:01:54:4f:20), Dst: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+    Destination: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        Address: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Source: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        Address: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 10.124.17.123, Dst: 8.8.8.8
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+        0000 00.. = Differentiated Services Codepoint: Default (0)
+        .... ..00 = Explicit Congestion Notification: Not ECN-Capable Transport (0)
+    Total Length: 60
+    Identification: 0x969f (38559)
+    Flags: 0x00
+        0... .... = Reserved bit: Not set
+        .0.. .... = Don&#39;t fragment: Not set
+        ..0. .... = More fragments: Not set
+    ...0 0000 0000 0000 = Fragment Offset: 0
+    Time to Live: 64
+    Protocol: UDP (17)
+    Header Checksum: 0xb80b [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 10.124.17.123
+    Destination Address: 8.8.8.8
+User Datagram Protocol, Src Port: 49375, Dst Port: 53
+    Source Port: 49375
+    Destination Port: 53
+    Length: 40
+    Checksum: 0x2c40 [unverified]
+    [Checksum Status: Unverified]
+    [Stream index: 1]
+    [Timestamps]
+        [Time since first frame: 0.000000000 seconds]
+        [Time since previous frame: 0.000000000 seconds]
+    UDP payload (32 bytes)
+Domain Name System (query)
+    Transaction ID: 0x1f67
+    Flags: 0x0100 Standard query
+        0... .... .... .... = Response: Message is a query
+        .000 0... .... .... = Opcode: Standard query (0)
+        .... ..0. .... .... = Truncated: Message is not truncated
+        .... ...1 .... .... = Recursion desired: Do query recursively
+        .... .... .0.. .... = Z: reserved (0)
+        .... .... ...0 .... = Non-authenticated data: Unacceptable
+    Questions: 1
+    Answer RRs: 0
+    Authority RRs: 0
+    Additional RRs: 0
+    Queries
+        www.aiit.or.kr: type A, class IN
+            Name: www.aiit.or.kr
+            [Name Length: 14]
+            [Label Count: 4]
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+    [Response In: 4]
+
+0000   48 81 d4 e6 ae 61 f4 b3 01 54 4f 20 08 00 45 00   H....a...TO ..E.
+0010   00 3c 96 9f 00 00 40 11 b8 0b 0a 7c 11 7b 08 08   .&lt;....@....|.{..
+0020   08 08 c0 df 00 35 00 28 2c 40 1f 67 01 00 00 01   .....5.(,@.g....
+0030   00 00 00 00 00 00 03 77 77 77 04 61 69 69 74 02   .......www.aiit.
+0040   6f 72 02 6b 72 00 00 01 00 01                     or.kr.....
+</code></pre><p>Response</p>
+<pre tabindex="0"><code>Frame 4: 90 bytes on wire (720 bits), 90 bytes captured (720 bits) on interface wlp4s0, id 0
+    Interface id: 0 (wlp4s0)
+        Interface name: wlp4s0
+    Encapsulation type: Ethernet (1)
+    Arrival Time: May 19, 2024 15:03:00.345696553 CST
+    [Time shift for this packet: 0.000000000 seconds]
+    Epoch Time: 1716102180.345696553 seconds
+    [Time delta from previous captured frame: 0.307335336 seconds]
+    [Time delta from previous displayed frame: 0.344335847 seconds]
+    [Time since reference or first frame: 0.624859668 seconds]
+    Frame Number: 4
+    Frame Length: 90 bytes (720 bits)
+    Capture Length: 90 bytes (720 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: eth:ethertype:ip:udp:dns]
+    [Coloring Rule Name: UDP]
+    [Coloring Rule String: udp]
+Ethernet II, Src: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61), Dst: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+    Destination: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        Address: IntelCor_54:4f:20 (f4:b3:01:54:4f:20)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Source: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        Address: 48:81:d4:e6:ae:61 (48:81:d4:e6:ae:61)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 8.8.8.8, Dst: 10.124.17.123
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x04 (DSCP: LE, ECN: Not-ECT)
+        0000 01.. = Differentiated Services Codepoint: Lower Effort (1)
+        .... ..00 = Explicit Congestion Notification: Not ECN-Capable Transport (0)
+    Total Length: 76
+    Identification: 0xed5b (60763)
+    Flags: 0x00
+        0... .... = Reserved bit: Not set
+        .0.. .... = Don&#39;t fragment: Not set
+        ..0. .... = More fragments: Not set
+    ...0 0000 0000 0000 = Fragment Offset: 0
+    Time to Live: 52
+    Protocol: UDP (17)
+    Header Checksum: 0x6d3b [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 8.8.8.8
+    Destination Address: 10.124.17.123
+User Datagram Protocol, Src Port: 53, Dst Port: 49375
+    Source Port: 53
+    Destination Port: 49375
+    Length: 56
+    Checksum: 0x20f5 [unverified]
+    [Checksum Status: Unverified]
+    [Stream index: 1]
+    [Timestamps]
+        [Time since first frame: 0.344335847 seconds]
+        [Time since previous frame: 0.344335847 seconds]
+    UDP payload (48 bytes)
+Domain Name System (response)
+    Transaction ID: 0x1f67
+    Flags: 0x8180 Standard query response, No error
+        1... .... .... .... = Response: Message is a response
+        .000 0... .... .... = Opcode: Standard query (0)
+        .... .0.. .... .... = Authoritative: Server is not an authority for domain
+        .... ..0. .... .... = Truncated: Message is not truncated
+        .... ...1 .... .... = Recursion desired: Do query recursively
+        .... .... 1... .... = Recursion available: Server can do recursive queries
+        .... .... .0.. .... = Z: reserved (0)
+        .... .... ..0. .... = Answer authenticated: Answer/authority portion was not authenticated by the server
+        .... .... ...0 .... = Non-authenticated data: Unacceptable
+        .... .... .... 0000 = Reply code: No error (0)
+    Questions: 1
+    Answer RRs: 1
+    Authority RRs: 0
+    Additional RRs: 0
+    Queries
+        www.aiit.or.kr: type A, class IN
+            Name: www.aiit.or.kr
+            [Name Length: 14]
+            [Label Count: 4]
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+    Answers
+        www.aiit.or.kr: type A, class IN, addr 58.229.6.225
+            Name: www.aiit.or.kr
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)
+            Time to live: 3600 (1 hour)
+            Data length: 4
+            Address: 58.229.6.225
+    [Request In: 2]
+    [Time: 0.344335847 seconds]
+
+0000   f4 b3 01 54 4f 20 48 81 d4 e6 ae 61 08 00 45 04   ...TO H....a..E.
+0010   00 4c ed 5b 00 00 34 11 6d 3b 08 08 08 08 0a 7c   .L.[..4.m;.....|
+0020   11 7b 00 35 c0 df 00 38 20 f5 1f 67 81 80 00 01   .{.5...8 ..g....
+0030   00 01 00 00 00 00 03 77 77 77 04 61 69 69 74 02   .......www.aiit.
+0040   6f 72 02 6b 72 00 00 01 00 01 c0 0c 00 01 00 01   or.kr...........
+0050   00 00 0e 10 00 04 3a e5 06 e1                     ......:...
+</code></pre><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/wireshark-lab/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Wireshark Lab</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://niuheshui.github.io/" >
+    &copy;  niuheshui.github.io 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

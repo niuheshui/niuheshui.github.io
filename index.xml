@@ -6,8 +6,15 @@
     <description>Recent content in niuheshui on niuheshui.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 11 May 2024 11:05:25 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 19 May 2024 10:05:32 +0800</lastBuildDate>
     <atom:link href="https://niuheshui.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wireshark DNS</title>
+      <link>https://niuheshui.github.io/post/computer_network_a_top_down/wireshark_dns/</link>
+      <pubDate>Sun, 19 May 2024 10:05:32 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/computer_network_a_top_down/wireshark_dns/</guid>
+      <description></description>
+    </item>
     <item>
       <title>在 Makefile 中为变量替换空格</title>
       <link>https://niuheshui.github.io/post/tools/makefile_join_word/</link>
