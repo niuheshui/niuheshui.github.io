@@ -43,7 +43,7 @@
 <meta itemprop="name" content="Kitty KeyMap">
 <meta itemprop="description" content="kitty 按键映射"><meta itemprop="datePublished" content="2024-05-10T14:50:33+08:00" />
 <meta itemprop="dateModified" content="2024-05-10T14:50:33+08:00" />
-<meta itemprop="wordCount" content="135">
+<meta itemprop="wordCount" content="134">
 <meta itemprop="keywords" content="kitty," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Kitty KeyMap"/>
 <meta name="twitter:description" content="kitty 按键映射"/>
 
@@ -163,11 +163,12 @@ map alt+right   resize_window wider     3
 map alt+up      resize_window taller    3
 map alt+down    resize_window shorter   3
 </code></pre><h4 id="layout">layout</h4>
-<pre tabindex="0"><code># stack layout 只显示一个窗口, 隐藏其他窗口
-enabled_layouts splits:split_axis=horizontal, stack
+<pre tabindex="0"><code>enabled_layouts splits, tall, fat, stack
 
-# 切换布局 因为只有两个布局, 相当于最大化一个窗口
 map kitty_mod+l next_layout
+
+# 切换当前窗口为最大化
+map alt+f toggle_layout stack
 </code></pre><ul class="pa0">
   
    <li class="list di">
