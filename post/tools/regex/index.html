@@ -43,7 +43,7 @@
 <meta itemprop="name" content="文本处理实用程序">
 <meta itemprop="description" content="记录各种文本处理命令"><meta itemprop="datePublished" content="2024-04-27T12:39:15+08:00" />
 <meta itemprop="dateModified" content="2024-04-27T12:39:15+08:00" />
-<meta itemprop="wordCount" content="240">
+<meta itemprop="wordCount" content="247">
 <meta itemprop="keywords" content="regex," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="文本处理实用程序"/>
 <meta name="twitter:description" content="记录各种文本处理命令"/>
 
@@ -140,6 +140,8 @@
 </span></span></code></pre></div><p>获取当前<code>git</code>所处的分支</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ echo <span style="color:#66d9ef">$(</span>git branch | cut -d <span style="color:#e6db74">&#39; &#39;</span> -f2<span style="color:#66d9ef">)</span>
 </span></span><span style="display:flex;"><span>$ echo <span style="color:#66d9ef">$(</span>git branch | awk <span style="color:#e6db74">&#39;{print $2}&#39;</span><span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>获取所有字体配置文件路径</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ fc-conflist | sed <span style="color:#e6db74">&#39;s/.* \(.*\):.*/\1/p&#39;</span>
 </span></span></code></pre></div><h2 id="awk">awk</h2>
 <p>Awk 是一种用于文本处理和数据提取的强大工具，其语法基于模式匹配和操作。下面是一些基础的 Awk 使用方法：</p>
 <ol>
