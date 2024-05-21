@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>头文件中的 static inline 函数 | niuheshui.github.io</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="头文件中定义一个 static inline 函数, 探究这个函数的具体行为">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://niuheshui.github.io/post/c/static_inline_function/">
+    
+
+    <meta property="og:title" content="头文件中的 static inline 函数" />
+<meta property="og:description" content="头文件中定义一个 static inline 函数, 探究这个函数的具体行为" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niuheshui.github.io/post/c/static_inline_function/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-05-21T23:26:58+08:00" />
+<meta property="article:modified_time" content="2024-05-21T23:26:58+08:00" />
+
+<meta itemprop="name" content="头文件中的 static inline 函数">
+<meta itemprop="description" content="头文件中定义一个 static inline 函数, 探究这个函数的具体行为"><meta itemprop="datePublished" content="2024-05-21T23:26:58+08:00" />
+<meta itemprop="dateModified" content="2024-05-21T23:26:58+08:00" />
+<meta itemprop="wordCount" content="161">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="头文件中的 static inline 函数"/>
+<meta name="twitter:description" content="头文件中定义一个 static inline 函数, 探究这个函数的具体行为"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        niuheshui.github.io
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About 页">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles 页">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">头文件中的 static inline 函数</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-05-21T23:26:58+08:00">五月 21, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>头文件中定义一个 static inline 函数, 探究这个函数的具体行为</p>
+<p>add.h</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">__attribute__</span>((always_inline))
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>foo.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;add.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">foo</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;add() Address: %p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, add);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;foo: add(%d, %d) = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>bar.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;add.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bar</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;add() Address: %p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, add);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;bar: add(%d, %d) = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;add.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#a6e22e">foo</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#a6e22e">bar</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;add() Address: %p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, add);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;main: add(%d, %d) = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">foo</span>(); <span style="color:#a6e22e">bar</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>如果打印 add 的地址, 可执行文件中就会有三份 add 函数拷贝</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gcc *.c
+</span></span><span style="display:flex;"><span>$ ./a.out
+</span></span><span style="display:flex;"><span>add<span style="color:#f92672">()</span> Address: 0x63b00046c23f
+</span></span><span style="display:flex;"><span>main: add<span style="color:#f92672">(</span>1, 2<span style="color:#f92672">)</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>add<span style="color:#f92672">()</span> Address: 0x63b00046c1c4
+</span></span><span style="display:flex;"><span>foo: add<span style="color:#f92672">(</span>1, 2<span style="color:#f92672">)</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>add<span style="color:#f92672">()</span> Address: 0x63b00046c149
+</span></span><span style="display:flex;"><span>bar: add<span style="color:#f92672">(</span>1, 2<span style="color:#f92672">)</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>$ readelf -s a.out | grep add
+</span></span><span style="display:flex;"><span>    12: <span style="color:#ae81ff">0000000000001149</span>    <span style="color:#ae81ff">24</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">16</span> add
+</span></span><span style="display:flex;"><span>    14: 00000000000011c4    <span style="color:#ae81ff">24</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">16</span> add
+</span></span><span style="display:flex;"><span>    16: 000000000000123f    <span style="color:#ae81ff">24</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">16</span> add
+</span></span></code></pre></div><p>注释掉打印, 代码段就没有 add , 全部被内联到了调用函数中</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://niuheshui.github.io/" >
+    &copy;  niuheshui.github.io 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
