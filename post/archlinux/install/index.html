@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>安装ArchLinux | niuheshui.github.io</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="以下内容使用 UEFI 启动, ArchLinux Wiki 有详细安装过程, 只记录部分">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://niuheshui.github.io/post/archlinux/install/">
+    
+
+    <meta property="og:title" content="安装ArchLinux" />
+<meta property="og:description" content="以下内容使用 UEFI 启动, ArchLinux Wiki 有详细安装过程, 只记录部分" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niuheshui.github.io/post/archlinux/install/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-06-05T07:49:59+08:00" />
+<meta property="article:modified_time" content="2024-06-05T07:49:59+08:00" />
+
+<meta itemprop="name" content="安装ArchLinux">
+<meta itemprop="description" content="以下内容使用 UEFI 启动, ArchLinux Wiki 有详细安装过程, 只记录部分"><meta itemprop="datePublished" content="2024-06-05T07:49:59+08:00" />
+<meta itemprop="dateModified" content="2024-06-05T07:49:59+08:00" />
+<meta itemprop="wordCount" content="511">
+<meta itemprop="keywords" content="linux,archlinux," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="安装ArchLinux"/>
+<meta name="twitter:description" content="以下内容使用 UEFI 启动, ArchLinux Wiki 有详细安装过程, 只记录部分"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        niuheshui.github.io
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About 页">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles 页">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">安装ArchLinux</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-06-05T07:49:59+08:00">六月 5, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>以下内容使用 UEFI 启动, ArchLinux Wiki 有详细安装过程, 只记录部分</p>
+<h2 id="安装前的准备">安装前的准备</h2>
+<h3 id="获取系统镜像">获取系统镜像</h3>
+<pre tabindex="0"><code>$ wget https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso/2024.06.01/archlinux-2024.06.01-x86_64.iso
+</code></pre><p>或者前往<a href="https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso/2024.06.01/">清华镜像源</a>手动下载</p>
+<h3 id="使用ssh连接">使用SSH连接</h3>
+<p>黑窗口太费眼, 使用本机 <code>ssh</code> 连接会舒服很多</p>
+<ol>
+<li>编辑 <code>/etc/ssh/sshd_config</code>, 修改 <code>PermitRootLogin</code> 为 yes</li>
+<li><code>systemctl restart sshd</code> 重启 <code>sshd</code> 服务</li>
+<li><code>passwd</code> 设置一个密码</li>
+</ol>
+<h3 id="创建硬盘分区">创建硬盘分区</h3>
+<p>查看设备</p>
+<pre tabindex="0"><code>$ lsblk
+or
+$ fdisk -l
+</code></pre><p>创建分区</p>
+<ol>
+<li>
+<p>启动 <code>cfdisk</code>:</p>
+<pre tabindex="0"><code>cfdisk /dev/sda
+</code></pre><p>将 <code>/dev/sda</code> 替换为您要分区的磁盘设备。</p>
+</li>
+<li>
+<p>在 <code>cfdisk</code> 界面中:</p>
+<ul>
+<li>使用上下键选择操作。</li>
+<li>按回车键确认选择。</li>
+</ul>
+</li>
+<li>
+<p>主要操作:</p>
+<ul>
+<li><code>New</code>: 创建新分区。</li>
+<li><code>Delete</code>: 删除选中的分区。</li>
+<li><code>Type</code>: 修改分区类型。</li>
+<li><code>Bootable</code>: 设置选中分区为可引导。</li>
+<li><code>Write</code>: 保存更改并退出。</li>
+<li><code>Quit</code>: 不保存更改并退出。</li>
+</ul>
+</li>
+<li>
+<p>创建新分区:</p>
+<ul>
+<li>选择 <code>New</code>。</li>
+<li>选择分区类型(主分区或扩展分区)。</li>
+<li>输入分区大小。</li>
+<li>选择分区位置(起始或末尾)。</li>
+</ul>
+</li>
+<li>
+<p>修改分区类型:</p>
+<ul>
+<li>选择要修改的分区。</li>
+<li>选择 <code>Type</code>。</li>
+<li>输入新的分区类型代码。</li>
+</ul>
+</li>
+<li>
+<p>设置分区为可引导:</p>
+<ul>
+<li>选择要设置为可引导的分区。</li>
+<li>选择 <code>Bootable</code>。</li>
+</ul>
+</li>
+<li>
+<p>保存更改并退出:</p>
+<ul>
+<li>选择 <code>Write</code>。</li>
+<li>确认保存更改。</li>
+</ul>
+</li>
+<li>
+<p>格式化新创建的分区:</p>
+<ul>
+<li>使用 <code>mkfs</code> 命令格式化新分区,例如 <code>mkfs.ext4 /dev/sda1</code>。</li>
+</ul>
+</li>
+</ol>
+<p>为了简单, 一个用于 efi 分区, 一个用于 ext4 文件系统</p>
+<pre tabindex="0"><code># lsblk
+sda      8:0    0    25G  0 disk 
+├─sda1   8:1    0   300M  0 part 
+└─sda2   8:2    0  24.7G  0 part 
+</code></pre><h3 id="格式化分区">格式化分区</h3>
+<pre tabindex="0"><code># mkfs.ext4 /dev/sd2
+</code></pre><h3 id="挂载分区">挂载分区</h3>
+<pre tabindex="0"><code># mount /dev/sda2 /mnt
+# mount --mkdir /dev/sda1 /mnt/boot
+</code></pre><h2 id="开始安装系统">开始安装系统</h2>
+<h3 id="选择镜像站">选择镜像站</h3>
+<p>访问 <a href="https://archlinux.org/mirrorlist/">Pacman Mirrorlist Generator</a> 页面获取镜像列表, 复制到 <code>/etc/pacman.d/mirrorlist</code> 中</p>
+<h3 id="安装必须的软件包">安装必须的软件包</h3>
+<p>安装 base 软件包和 Linux 内核以及常规硬件的固件</p>
+<pre tabindex="0"><code># pacstrap -K /mnt base linux linux-firmware intel-ucode amd-ucode
+</code></pre><p>安装基本工具</p>
+<pre tabindex="0"><code># pacstrap -K /mnt vim coreutils man man-pages
+</code></pre><p>网络工具</p>
+<pre tabindex="0"><code># pacstrap -K /mnt networkmanager
+</code></pre><h2 id="配置系统">配置系统</h2>
+<h3 id="生成-fstab-文件">生成 fstab 文件</h3>
+<pre tabindex="0"><code># genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+# cat /mnt/etc/fstab
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# &lt;file system&gt; &lt;dir&gt; &lt;type&gt; &lt;options&gt; &lt;dump&gt; &lt;pass&gt;
+# /dev/sda2
+UUID=e8f9689c-08ef-4fd2-af10-e0eea75d8629	/         	ext4      	rw,relatime	0 1
+
+# /dev/sda1
+UUID=7480-958D      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+</code></pre><h3 id="chroot-到新安装的系统">chroot 到新安装的系统</h3>
+<pre tabindex="0"><code># arch-chroot /mnt
+</code></pre><h3 id="设置时区">设置时区</h3>
+<pre tabindex="0"><code># ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+# hwclock --systohc
+</code></pre><h3 id="区域化和本地化设置">区域化和本地化设置</h3>
+<p>编辑 <code>/etc/locale.gen</code>, 取消注释 <code>en_US.UTF-8 UTF-8</code> 和 <code>zh_CN.UTF-8 UTF-8</code>, 执行 <code>locale-gen</code> 生成 locale 信息</p>
+<pre tabindex="0"><code># locale-gen
+</code></pre><p>然后创建 locale.conf 文件, 设定 LANG 变量</p>
+<pre tabindex="0"><code># echo &#34;LANG=en_US.UTF-8&#34; &gt; /etc/locale.conf
+</code></pre><h3 id="网络配置">网络配置</h3>
+<pre tabindex="0"><code># echo &#34;niu-archlinux&#34; &gt; /etc/hostname
+</code></pre><h3 id="设置-root-密码">设置 root 密码</h3>
+<pre tabindex="0"><code># passwd
+</code></pre><h3 id="安装引导程序">安装引导程序</h3>
+<p>安装 <a href="https://wiki.archlinuxcn.org/wiki/GRUB"><code>grub</code></a></p>
+<pre tabindex="0"><code># pacman -S grub efibootmgr
+# grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+Installing for x86_64-efi platform.
+Installation finished. No error reported.
+</code></pre><p>修改 <code>/etc/default/grub</code> 文件</p>
+<pre tabindex="0"><code>GRUB_CMDLINE_LINUX_DEFAULT=&#34;loglevel=5 nowatchdog&#34;
+</code></pre><p><code>GRUB_CMDLINE_LINUX_DEFAULT</code> 是 GRUB 引导程序在启动 Linux 内核时使用的默认内核参数。这些参数会传递给内核,并影响内核的行为。</p>
+<p>其中,<code>loglevel=5</code> 和 <code>nowatchdog</code> 这两个参数分别有以下作用:</p>
+<ol>
+<li>
+<p><code>loglevel=5</code>:</p>
+<ul>
+<li>这个参数设置内核日志的详细程度。</li>
+<li><code>loglevel</code> 的取值范围是 0-7,数字越大表示日志越详细。</li>
+<li>将 <code>loglevel</code> 设置为 5 表示输出&quot;notice&quot;级别及以上的日志信息。这些信息通常包括一些重要的系统事件和警告信息。</li>
+<li>增加日志详细程度可以帮助排查系统问题,但同时也会增加系统开销。</li>
+</ul>
+</li>
+<li>
+<p><code>nowatchdog</code>:</p>
+<ul>
+<li>这个参数用于禁用内核的看门狗 (Watchdog) 功能。</li>
+<li>内核的看门狗功能用于监控系统是否出现死锁或其他问题,如果检测到问题会自动重启系统。</li>
+<li>在某些情况下,如果内核出现了暂时性的问题,看门狗可能会导致系统不必要的重启。</li>
+<li>禁用看门狗功能可以避免这种情况,但同时也会失去这种自动监控和恢复的能力。</li>
+</ul>
+</li>
+</ol>
+<p>总的来说,这两个参数的作用是:</p>
+<ol>
+<li>增加内核日志的详细程度,以便更好地诊断和排查系统问题。</li>
+<li>禁用内核的看门狗功能,避免系统因暂时性问题而不必要的重启。</li>
+</ol>
+<p>生成主配置文件</p>
+<pre tabindex="0"><code># grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre><h3 id="重新启动计算机">重新启动计算机</h3>
+<pre tabindex="0"><code># exit 
+# umount -R /mnt
+# reboot
+</code></pre><h2 id="安装后的工作">安装后的工作</h2>
+<h3 id="启动-networkmanager-服务">启动 <code>NetWorkManager</code> 服务</h3>
+<pre tabindex="0"><code># systemctl enable --now NetWorkManager
+</code></pre><h4 id="工具">工具</h4>
+<pre tabindex="0"><code># pacman -S openssh fish which toilet sudo wget curl zip unzip git tree make python-pip firefox neofetch ranger ttyd vlc posix
+</code></pre><h3 id="配置-sudohttpswikiarchlinuxcnorgwikisudo-根据需要取消注释">配置 <a href="https://wiki.archlinuxcn.org/wiki/Sudo">sudo</a>, 根据需要取消注释</h3>
+<pre tabindex="0"><code># EDITOR=vim visudo 
+</code></pre><h3 id="添加非超级用户">添加非超级用户</h3>
+<pre tabindex="0"><code># useradd -m -G wheel -s /bin/fish niu
+# passwd niu
+</code></pre><h3 id="安装桌面环境">安装桌面环境</h3>
+<h4 id="登陆管理器">登陆管理器</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo pacman -S lightdm lightdm-gtk-greeter  lightdm-gtk-greeter-settings
+</span></span></code></pre></div><h4 id="窗口管理器和混成器">窗口管理器和混成器</h4>
+<p>顺便安装 kitty</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo pacman -S i3 picom kitty
+</span></span></code></pre></div><h4 id="窗口启动器">窗口启动器</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo pacman -S rofi
+</span></span></code></pre></div><h4 id="发送通知到桌面系统">发送通知到桌面系统</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo pacman -S dunst libnotify
+</span></span></code></pre></div><h3 id="时钟同步">时钟同步</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo timedatectl set-ntp true
+</span></span></code></pre></div><h3 id="声音">声音</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo pacman -S alsa-utils pulseaudio pulseaudio-alsa
+</span></span></code></pre></div><h3 id="输入法">输入法</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo pacman -S fcitx5 fcitx5-chinese-addons fcitx5-configtool fcitx5-pinyin-zhwiki fcitx5-material-color
+</span></span><span style="display:flex;"><span> fcitx5-qt fcitx5-gtk
+</span></span></code></pre></div><h4 id="集成">集成</h4>
+<p>编辑 <code>/etc/environment</code></p>
+<pre tabindex="0"><code>GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+SDL_IM_MODULE=fcitx
+INPUT_METHOD=fcitx
+GLFW_IM_MODULE=ibus
+</code></pre><h3 id="安装-yay">安装 yay</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ wget https://raw.githubusercontent.com/ArchLinuxStudio/ArchLinuxTutorial/master/docs/res/yay-bin-12.3.3-1-x86_64.pkg.tar.zst
+</span></span><span style="display:flex;"><span>$ sudo pacman -U yay-bin-12.3.3-1-x86_64.pkg.tar.zst
+</span></span><span style="display:flex;"><span>$ sudo pacman -S debugedit fakeroot
+</span></span></code></pre></div><h3 id="魔法">魔法</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo pacman -S v2ray
+</span></span><span style="display:flex;"><span>$ yay -S v2raya-bin
+</span></span><span style="display:flex;"><span>$ sudo systemctl enable --now v2raya
+</span></span></code></pre></div><h3 id="字体">字体</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo pacman -S noto-fonts-emoji noto-fonts-cjk
+</span></span></code></pre></div><h3 id="主题和图标">主题和图标</h3>
+<p>光标: <a href="https://www.pling.com/s/All-Linux/p/1360254">https://www.pling.com/s/All-Linux/p/1360254</a></p>
+<p>主题: <a href="https://www.pling.com/p/1477941/">https://www.pling.com/p/1477941/</a></p>
+<p>图标: <a href="https://www.pling.com/p/1477945/">https://www.pling.com/p/1477945/</a></p>
+<p>主题文件夹位于 <code>/usr/share/themes/</code></p>
+<p>图表文件夹位于 <code>/usr/share/icons/</code></p><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/linux/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">linux</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/archlinux/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">archlinux</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">相关內容</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/tools/apt_http_proxy/">apt设置代理</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/tools/xdg-mime/">使用xdg-mime修改xdg-open默认打开方式</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/nmcli/">nmcli管理网络连接</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://niuheshui.github.io/" >
+    &copy;  niuheshui.github.io 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
