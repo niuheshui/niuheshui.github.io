@@ -6,8 +6,15 @@
     <description>Recent content in os on niuheshui.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 21 Apr 2024 16:22:56 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 05 Jun 2024 21:04:08 +0800</lastBuildDate>
     <atom:link href="https://niuheshui.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>M5: 系统调用 Profiler (sperf)</title>
+      <link>https://niuheshui.github.io/post/os/m5/</link>
+      <pubDate>Wed, 05 Jun 2024 21:04:08 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/os/m5/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://jyywiki.cn/OS/2024/&#34;&gt;操作系统: 设计与实现(2024春季)&lt;/a&gt; &lt;a href=&#34;https://jyywiki.cn/OS/2024/labs/M5.md&#34;&gt;M5: 系统调用 Profiler (sperf)&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>M4: C Read-Eval-Print-Loop (crepl)</title>
       <link>https://niuheshui.github.io/post/os/m4/</link>

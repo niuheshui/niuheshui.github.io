@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>M5: 系统调用 Profiler (sperf) | niuheshui.github.io</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="操作系统: 设计与实现(2024春季) M5: 系统调用 Profiler (sperf)">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://niuheshui.github.io/post/os/m5/">
+    
+
+    <meta property="og:title" content="M5: 系统调用 Profiler (sperf)" />
+<meta property="og:description" content="操作系统: 设计与实现(2024春季) M5: 系统调用 Profiler (sperf)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niuheshui.github.io/post/os/m5/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-06-05T21:04:08+08:00" />
+<meta property="article:modified_time" content="2024-06-05T21:04:08+08:00" />
+
+<meta itemprop="name" content="M5: 系统调用 Profiler (sperf)">
+<meta itemprop="description" content="操作系统: 设计与实现(2024春季) M5: 系统调用 Profiler (sperf)"><meta itemprop="datePublished" content="2024-06-05T21:04:08+08:00" />
+<meta itemprop="dateModified" content="2024-06-05T21:04:08+08:00" />
+<meta itemprop="wordCount" content="44">
+<meta itemprop="keywords" content="os," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="M5: 系统调用 Profiler (sperf)"/>
+<meta name="twitter:description" content="操作系统: 设计与实现(2024春季) M5: 系统调用 Profiler (sperf)"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        niuheshui.github.io
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About 页">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles 页">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">M5: 系统调用 Profiler (sperf)</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-06-05T21:04:08+08:00">六月 5, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p><a href="https://jyywiki.cn/OS/2024/">操作系统: 设计与实现(2024春季)</a> <a href="https://jyywiki.cn/OS/2024/labs/M5.md">M5: 系统调用 Profiler (sperf)</a></p>
+<ol>
+<li>创建匿名管道</li>
+<li>使用 <a href="https://man7.org/linux/man-pages/man2/fork.2.html"><code>fork</code></a> 创建子进程
+<ol>
+<li>使用 <a href="https://man7.org/linux/man-pages/man2/dup2.2.html"><code>dup2</code></a> 将子进程 <code>stderr</code> 重定向到管道的读口</li>
+<li>打开 <code>/dev/null</code>, 将 <code>stdout</code> 重定向到 <code>/dev/null</code>, 防止污染父进程输出</li>
+<li>关闭管道读口与写口的文件描述符</li>
+<li>使用 <a href="https://man7.org/linux/man-pages/man2/execve.2.html"><code>execve</code></a> 执行 <code>strace -T arg1 arg2 ...</code></li>
+</ol>
+</li>
+<li>将父进程 <code>stdin</code> 重定向到管道写口</li>
+<li>关闭管道读口与写口的文件描述符</li>
+<li>使用 <code>regex.h</code> 解析 <code>strace</code> 的输出</li>
+<li>最后偷懒用 python 统计信息 <del>字典真好用</del></li>
+</ol><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/os/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">os</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">相关內容</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/os/m4/">M4: C Read-Eval-Print-Loop (crepl)</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/os/lock_implementation/">锁的实现(x86)</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/os/os-model/">操作系统模型</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/os/m1/">M1: 打印进程树(pstree)</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://niuheshui.github.io/" >
+    &copy;  niuheshui.github.io 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
