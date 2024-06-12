@@ -43,7 +43,7 @@
 <meta itemprop="name" content="安装ArchLinux">
 <meta itemprop="description" content="以下内容使用 UEFI 启动, ArchLinux Wiki 有详细安装过程, 只记录部分"><meta itemprop="datePublished" content="2024-06-05T07:49:59+08:00" />
 <meta itemprop="dateModified" content="2024-06-05T07:49:59+08:00" />
-<meta itemprop="wordCount" content="521">
+<meta itemprop="wordCount" content="568">
 <meta itemprop="keywords" content="linux,archlinux," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="安装ArchLinux"/>
 <meta name="twitter:description" content="以下内容使用 UEFI 启动, ArchLinux Wiki 有详细安装过程, 只记录部分"/>
 
@@ -152,12 +152,16 @@
 or
 $ fdisk -l
 </code></pre><p>创建分区</p>
-<ol>
-<li>
-<p>启动 <code>cfdisk</code>:</p>
-<pre tabindex="0"><code>cfdisk /dev/sda
+<p>先使用 <code>fdisk</code> 创建 <code>GPT</code> 分区表</p>
+<pre tabindex="0"><code># fdisk /dev/sda
+按下 g 创建 GPT 分区表
+按下 w 写入
+</code></pre><ol>
+<li>启动 <code>cfdisk</code>:</li>
+</ol>
+<pre tabindex="0"><code># cfdisk /dev/sda
 </code></pre><p>将 <code>/dev/sda</code> 替换为您要分区的磁盘设备。</p>
-</li>
+<ol start="2">
 <li>
 <p>在 <code>cfdisk</code> 界面中:</p>
 <ul>
@@ -215,12 +219,18 @@ $ fdisk -l
 </li>
 </ol>
 <p>为了简单, 一个用于 efi 分区, 一个用于 ext4 文件系统</p>
-<pre tabindex="0"><code># lsblk
+<pre tabindex="0"><code># cfdisk look like 
+    Device                 Start            End       Sectors       Size Type
+&gt;&gt;  /dev/sda1               2048         616447        614400       300M EFI System
+    /dev/sda2             616448      965306367     964689920       460G Linux filesystem
+
+# lsblk
 sda      8:0    0    25G  0 disk 
 ├─sda1   8:1    0   300M  0 part 
 └─sda2   8:2    0  24.7G  0 part 
 </code></pre><h3 id="格式化分区">格式化分区</h3>
-<pre tabindex="0"><code># mkfs.ext4 /dev/sd2
+<pre tabindex="0"><code># mkfs.fat -F 32 /dev/sda1
+# mkfs.ext4 /dev/sda2
 </code></pre><h3 id="挂载分区">挂载分区</h3>
 <pre tabindex="0"><code># mount /dev/sda2 /mnt
 # mount --mkdir /dev/sda1 /mnt/boot
