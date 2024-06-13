@@ -2,12 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://niuheshui.github.io/tags/linux/</loc>
-    <lastmod>2024-06-05T22:39:31+08:00</lastmod>
+    <loc>https://niuheshui.github.io/</loc>
+    <lastmod>2024-06-13T14:48:28+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://niuheshui.github.io/</loc>
+    <loc>https://niuheshui.github.io/post/c/read_term/</loc>
+    <lastmod>2024-06-13T14:48:28+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/post/c/char0/</loc>
+    <lastmod>2024-06-12T20:15:19+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/linux/</loc>
     <lastmod>2024-06-05T22:39:31+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
