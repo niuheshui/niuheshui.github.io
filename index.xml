@@ -6,8 +6,15 @@
     <description>Recent content in niuheshui on niuheshui.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 13 Jun 2024 14:48:28 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jul 2024 21:47:05 +0800</lastBuildDate>
     <atom:link href="https://niuheshui.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>字体突然变大</title>
+      <link>https://niuheshui.github.io/post/questions/dpi/</link>
+      <pubDate>Mon, 01 Jul 2024 21:47:05 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/questions/dpi/</guid>
+      <description>&lt;p&gt;i3blocks 变的异常的大, 最后发现是 DPI 过大导致&lt;/p&gt;</description>
+    </item>
     <item>
       <title>read syscall 从终端为什么只能读取一行</title>
       <link>https://niuheshui.github.io/post/c/read_term/</link>

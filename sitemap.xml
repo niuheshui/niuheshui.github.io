@@ -3,7 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://niuheshui.github.io/</loc>
-    <lastmod>2024-06-13T14:48:28+08:00</lastmod>
+    <lastmod>2024-07-01T21:47:05+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/post/questions/dpi/</loc>
+    <lastmod>2024-07-01T21:47:05+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>

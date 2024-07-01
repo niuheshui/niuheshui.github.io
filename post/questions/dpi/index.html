@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>字体突然变大 | niuheshui.github.io</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="i3blocks 变的异常的大, 最后发现是 DPI 过大导致">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://niuheshui.github.io/post/questions/dpi/">
+    
+
+    <meta property="og:title" content="字体突然变大" />
+<meta property="og:description" content="i3blocks 变的异常的大, 最后发现是 DPI 过大导致" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niuheshui.github.io/post/questions/dpi/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-07-01T21:47:05+08:00" />
+<meta property="article:modified_time" content="2024-07-01T21:47:05+08:00" />
+
+<meta itemprop="name" content="字体突然变大">
+<meta itemprop="description" content="i3blocks 变的异常的大, 最后发现是 DPI 过大导致"><meta itemprop="datePublished" content="2024-07-01T21:47:05+08:00" />
+<meta itemprop="dateModified" content="2024-07-01T21:47:05+08:00" />
+<meta itemprop="wordCount" content="144">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="字体突然变大"/>
+<meta name="twitter:description" content="i3blocks 变的异常的大, 最后发现是 DPI 过大导致"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        niuheshui.github.io
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About 页">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles 页">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">字体突然变大</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-07-01T21:47:05+08:00">七月 1, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>i3blocks 变的异常的大, 最后发现是 DPI 过大导致</p>
+<p>在 i3 窗口管理器中，系统字体缩放变大可能是由于几个因素引起的。i3wm本身并没有内置的字体缩放选项，但可以通过调整系统的 DPI 设置或者直接修改配置文件来调整字体大小。以下是一些可能的解决方法：</p>
+<h3 id="1-调整系统-dpi-设置">1. 调整系统 DPI 设置</h3>
+<p>在 X Window System 中，字体和界面元素的大小通常与系统的 DPI (dots per inch) 设置相关联。如果系统的 DPI 设置过高，可能导致字体和界面元素显得过大。可以尝试修改系统的 DPI 设置来调整字体大小：</p>
+<h4 id="方法一使用-xrandr-设置-dpi">方法一：使用 <code>xrandr</code> 设置 DPI</h4>
+<p>首先，查看当前的 DPI 设置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>xdpyinfo | grep -B <span style="color:#ae81ff">2</span> resolution
+</span></span></code></pre></div><p>然后，使用 <code>xrandr</code> 命令设置新的 DPI 值。例如，设置 DPI 值为 96：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>xrandr --dpi <span style="color:#ae81ff">96</span>
+</span></span></code></pre></div><h4 id="方法二修改-xorg-配置文件">方法二：修改 Xorg 配置文件</h4>
+<p>编辑 Xorg 的配置文件（通常位于 <code>/etc/X11/xorg.conf</code> 或者 <code>/etc/X11/xorg.conf.d/</code> 目录下），添加或修改以下内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Section <span style="color:#e6db74">&#34;Monitor&#34;</span>
+</span></span><span style="display:flex;"><span>    Identifier   <span style="color:#e6db74">&#34;Monitor0&#34;</span>
+</span></span><span style="display:flex;"><span>    Option       <span style="color:#e6db74">&#34;DPI&#34;</span> <span style="color:#e6db74">&#34;96 x 96&#34;</span>
+</span></span><span style="display:flex;"><span>EndSection
+</span></span></code></pre></div><p>重新启动 X 服务器以使更改生效。</p>
+<h3 id="2-修改-i3-配置文件">2. 修改 i3 配置文件</h3>
+<p>如果 DPI 设置正常，但字体仍然过大，可以尝试直接在 i3 配置文件中修改字体大小：</p>
+<h4 id="方法一修改-configi3config-文件">方法一：修改 <code>~/.config/i3/config</code> 文件</h4>
+<p>打开 <code>~/.config/i3/config</code> 文件，找到与字体相关的设置，例如：</p>
+<pre tabindex="0"><code>font pango:DejaVu Sans Mono 10
+</code></pre><p>将 <code>10</code> 改为更小的数字，例如 <code>9</code> 或者 <code>8</code>，然后保存文件并重新加载 i3 配置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>i3-msg reload
+</span></span></code></pre></div><h4 id="方法二使用-xrdb-设置字体大小">方法二：使用 <code>xrdb</code> 设置字体大小</h4>
+<p>创建一个 <code>.Xresources</code> 文件，添加如下内容：</p>
+<pre tabindex="0"><code>Xft.dpi: 96
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+Xft.dpi: 96
+</code></pre><p>然后执行以下命令使其生效：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>xrdb -merge ~/.Xresources
+</span></span></code></pre></div><h3 id="3-检查其他应用程序设置">3. 检查其他应用程序设置</h3>
+<p>有时候，特定的应用程序可能会覆盖系统或窗口管理器的字体设置。确保检查并调整每个应用程序的字体大小设置。</p>
+<h3 id="4-重启窗口管理器或者系统">4. 重启窗口管理器或者系统</h3>
+<p>在应用了上述更改之后，可能需要重新启动 i3wm 或者整个 X 会话来确保新的字体设置生效。</p>
+<p>通过以上方法，你应该能够解决 i3wm 中系统字体缩放变大的问题。选择适合你环境的方法，并根据需要进行调整。</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://niuheshui.github.io/" >
+    &copy;  niuheshui.github.io 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
