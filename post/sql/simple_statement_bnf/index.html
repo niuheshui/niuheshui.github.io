@@ -43,7 +43,7 @@
 <meta itemprop="name" content="简单 SQL 语句的 BNF 定义">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-08-01T15:19:19+08:00" />
 <meta itemprop="dateModified" content="2024-08-01T15:19:19+08:00" />
-<meta itemprop="wordCount" content="255">
+<meta itemprop="wordCount" content="371">
 <meta itemprop="keywords" content="sql," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="简单 SQL 语句的 BNF 定义"/>
 <meta name="twitter:description" content=""/>
 
@@ -161,14 +161,42 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">update-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;UPDATE&#34; &lt;<span style="color:#a6e22e">table-name</span>&gt; &#34;SET&#34; &lt;<span style="color:#a6e22e">column-name</span>&gt; &#34;=&#34; &lt;<span style="color:#a6e22e">value</span>&gt; { &#34;,&#34; &lt;<span style="color:#a6e22e">column-name</span>&gt; &#34;=&#34; &lt;<span style="color:#a6e22e">value</span>&gt; } [ &lt;<span style="color:#a6e22e">where-clause</span>&gt; ] &#34;;&#34;
 </span></span></code></pre></div><h4 id="14-delete-语句">1.4. DELETE 语句</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">delete-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;DELETE&#34; &#34;FROM&#34; &lt;<span style="color:#a6e22e">table-name</span>&gt; [ &lt;<span style="color:#a6e22e">where-clause</span>&gt; ] &#34;;&#34;
-</span></span></code></pre></div><h4 id="15-create-table-语句">1.5. CREATE TABLE 语句</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">create-table-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;CREATE&#34; &#34;TABLE&#34; &lt;<span style="color:#a6e22e">table-name</span>&gt; &#34;(&#34; &lt;<span style="color:#a6e22e">column-definition-list</span>&gt; &#34;)&#34; &#34;;&#34;
+</span></span></code></pre></div><h4 id="15-create-语句">1.5. CREATE 语句</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">sql-statement</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">create-statement</span>&gt; | &lt;<span style="color:#a6e22e">drop-statement</span>&gt; | &lt;<span style="color:#a6e22e">select-statement</span>&gt; | &lt;<span style="color:#a6e22e">insert-statement</span>&gt; | &lt;<span style="color:#a6e22e">update-statement</span>&gt; | &lt;<span style="color:#a6e22e">delete-statement</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">create-statement</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">create-table-statement</span>&gt; | &lt;<span style="color:#a6e22e">create-view-statement</span>&gt; | &lt;<span style="color:#a6e22e">create-index-statement</span>&gt; | &lt;<span style="color:#a6e22e">create-database-statement</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">create-database-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;CREATE&#34; &#34;DATABASE&#34; [ &#34;IF&#34; &#34;NOT&#34; &#34;EXISTS&#34; ] &lt;<span style="color:#a6e22e">database-name</span>&gt; &#34;;&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">create-table-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;CREATE&#34; &#34;TABLE&#34; &lt;<span style="color:#a6e22e">table-name</span>&gt; &#34;(&#34; &lt;<span style="color:#a6e22e">column-definition-list</span>&gt; &#34;)&#34; [ &lt;<span style="color:#a6e22e">table-options</span>&gt; ] &#34;;&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">create-view-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;CREATE&#34; &#34;VIEW&#34; &lt;<span style="color:#a6e22e">view-name</span>&gt; &#34;AS&#34; &lt;<span style="color:#a6e22e">select-statement</span>&gt; &#34;;&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">create-index-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;CREATE&#34; &#34;INDEX&#34; &lt;<span style="color:#a6e22e">index-name</span>&gt; &#34;ON&#34; &lt;<span style="color:#a6e22e">table-name</span>&gt; &#34;(&#34; &lt;<span style="color:#a6e22e">column-list</span>&gt; &#34;)&#34; &#34;;&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">database-name</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">identifier</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">table-name</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">identifier</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">view-name</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">identifier</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">index-name</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">identifier</span>&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">column-definition-list</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">column-definition</span>&gt; { &#34;,&#34; &lt;<span style="color:#a6e22e">column-definition</span>&gt; }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">column-definition</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">column-name</span>&gt; &lt;<span style="color:#a6e22e">data-type</span>&gt; [ &lt;<span style="color:#a6e22e">column-options</span>&gt; ]
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">column-definition</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">identifier</span>&gt; &lt;<span style="color:#a6e22e">data-type</span>&gt; [ &lt;<span style="color:#a6e22e">column-options</span>&gt; ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">data-type</span>&gt; <span style="color:#f92672">::=</span> &#34;INTEGER&#34; | &#34;VARCHAR&#34; | &#34;BOOLEAN&#34; | &#34;DATE&#34; | ...  // 其他数据类型
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">column-options</span>&gt; <span style="color:#f92672">::=</span> &#34;NOT&#34; &#34;NULL&#34; | &#34;UNIQUE&#34; | &#34;PRIMARY&#34; &#34;KEY&#34; | &#34;DEFAULT&#34; &lt;<span style="color:#a6e22e">default-value</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">default-value</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">literal</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">identifier</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">letter</span>&gt; { &lt;<span style="color:#a6e22e">letter</span>&gt; | &lt;<span style="color:#a6e22e">digit</span>&gt; | &#34;_&#34; }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">letter</span>&gt; <span style="color:#f92672">::=</span> &#34;a&#34; | &#34;b&#34; | ... | &#34;z&#34; | &#34;A&#34; | ... | &#34;Z&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">digit</span>&gt; <span style="color:#f92672">::=</span> &#34;0&#34; | &#34;1&#34; | ... | &#34;9&#34;
 </span></span></code></pre></div><h3 id="2-其他常见-sql-语句">2. 其他常见 SQL 语句</h3>
 <h4 id="21-create-database-语句">2.1. CREATE DATABASE 语句</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">create-database-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;CREATE&#34; &#34;DATABASE&#34; [ &#34;IF&#34; &#34;NOT&#34; &#34;EXISTS&#34; ] &lt;<span style="color:#a6e22e">database-name</span>&gt; &#34;;&#34;
