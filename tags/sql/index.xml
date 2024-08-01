@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sql on niuheshui.github.io</title>
+    <link>https://niuheshui.github.io/tags/sql/</link>
+    <description>Recent content in sql on niuheshui.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 01 Aug 2024 15:19:19 +0800</lastBuildDate>
+    <atom:link href="https://niuheshui.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>简单 SQL 语句的 BNF 定义</title>
+      <link>https://niuheshui.github.io/post/sql/simple_statement_bnf/</link>
+      <pubDate>Thu, 01 Aug 2024 15:19:19 +0800</pubDate>
+      <guid>https://niuheshui.github.io/post/sql/simple_statement_bnf/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

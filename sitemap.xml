@@ -3,7 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://niuheshui.github.io/</loc>
-    <lastmod>2024-07-08T09:24:39+08:00</lastmod>
+    <lastmod>2024-08-01T15:19:19+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/sql/</loc>
+    <lastmod>2024-08-01T15:19:19+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/tags/</loc>
+    <lastmod>2024-08-01T15:19:19+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://niuheshui.github.io/post/sql/simple_statement_bnf/</loc>
+    <lastmod>2024-08-01T15:19:19+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -13,11 +28,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://niuheshui.github.io/post/python/wrapper_function/</loc>
-    <lastmod>2024-07-08T09:24:39+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://niuheshui.github.io/tags/</loc>
     <lastmod>2024-07-08T09:24:39+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -322,7 +332,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://niuheshui.github.io/post/nmcli/</loc>
+    <loc>https://niuheshui.github.io/post/tools/nmcli/</loc>
     <lastmod>2024-02-25T21:07:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

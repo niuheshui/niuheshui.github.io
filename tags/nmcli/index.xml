@@ -10,9 +10,9 @@
     <atom:link href="https://niuheshui.github.io/tags/nmcli/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>nmcli管理网络连接</title>
-      <link>https://niuheshui.github.io/post/nmcli/</link>
+      <link>https://niuheshui.github.io/post/tools/nmcli/</link>
       <pubDate>Sun, 25 Feb 2024 21:07:36 +0800</pubDate>
-      <guid>https://niuheshui.github.io/post/nmcli/</guid>
+      <guid>https://niuheshui.github.io/post/tools/nmcli/</guid>
       <description>&lt;p&gt;&lt;code&gt;nmcli&lt;/code&gt; 是用于控制 NetworkManager 的命令行工具。NetworkManager 是一个系统网络服务，用于管理各种类型的网络连接，包括以太网、Wi-Fi、VPN 等。&lt;code&gt;nmcli&lt;/code&gt; 允许用户通过命令行界面管理 NetworkManager 管理的网络连接，包括查看、创建、编辑、激活和停用连接。&lt;/p&gt;</description>
     </item>
   </channel>

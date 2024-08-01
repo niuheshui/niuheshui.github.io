@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>简单 SQL 语句的 BNF 定义 | niuheshui.github.io</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://niuheshui.github.io/post/sql/simple_statement_bnf/">
+    
+
+    <meta property="og:title" content="简单 SQL 语句的 BNF 定义" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://niuheshui.github.io/post/sql/simple_statement_bnf/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-08-01T15:19:19+08:00" />
+<meta property="article:modified_time" content="2024-08-01T15:19:19+08:00" />
+
+<meta itemprop="name" content="简单 SQL 语句的 BNF 定义">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-08-01T15:19:19+08:00" />
+<meta itemprop="dateModified" content="2024-08-01T15:19:19+08:00" />
+<meta itemprop="wordCount" content="255">
+<meta itemprop="keywords" content="sql," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="简单 SQL 语句的 BNF 定义"/>
+<meta name="twitter:description" content=""/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        niuheshui.github.io
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About 页">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles 页">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">简单 SQL 语句的 BNF 定义</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-08-01T15:19:19+08:00">八月 1, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><blockquote>
+<p><strong>FROM Chat-GPT-4o</strong></p>
+</blockquote>
+<p>SQL 标准的 BNF（巴科斯-诺尔范式）定义非常复杂，因为 SQL 语言的语法涵盖了多种操作和数据类型。以下是一些常见 SQL 语句的简化 BNF 定义示例。这些示例并不涵盖 SQL 的所有细节，但可以帮助你理解 SQL 语句的基本结构。</p>
+<h3 id="1-sql-语句的-bnf-定义示例">1. SQL 语句的 BNF 定义示例</h3>
+<h4 id="11-select-语句">1.1. SELECT 语句</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">select-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;SELECT&#34; [ &lt;<span style="color:#a6e22e">select-list</span>&gt; ] &#34;FROM&#34; &lt;<span style="color:#a6e22e">table-name</span>&gt; [ &lt;<span style="color:#a6e22e">where-clause</span>&gt; ] [ &lt;<span style="color:#a6e22e">group-by-clause</span>&gt; ] [ &lt;<span style="color:#a6e22e">having-clause</span>&gt; ] [ &lt;<span style="color:#a6e22e">order-by-clause</span>&gt; ] &#34;;&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">select-list</span>&gt; <span style="color:#f92672">::=</span> &#34;*&#34; | &lt;<span style="color:#a6e22e">column-name</span>&gt; { &#34;,&#34; &lt;<span style="color:#a6e22e">column-name</span>&gt; }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">where-clause</span>&gt; <span style="color:#f92672">::=</span> &#34;WHERE&#34; &lt;<span style="color:#a6e22e">condition</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">group-by-clause</span>&gt; <span style="color:#f92672">::=</span> &#34;GROUP&#34; &#34;BY&#34; &lt;<span style="color:#a6e22e">column-name</span>&gt; { &#34;,&#34; &lt;<span style="color:#a6e22e">column-name</span>&gt; }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">having-clause</span>&gt; <span style="color:#f92672">::=</span> &#34;HAVING&#34; &lt;<span style="color:#a6e22e">condition</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">order-by-clause</span>&gt; <span style="color:#f92672">::=</span> &#34;ORDER&#34; &#34;BY&#34; &lt;<span style="color:#a6e22e">column-name</span>&gt; [ &#34;ASC&#34; | &#34;DESC&#34; ] { &#34;,&#34; &lt;<span style="color:#a6e22e">column-name</span>&gt; [ &#34;ASC&#34; | &#34;DESC&#34; ] }
+</span></span></code></pre></div><h4 id="12-insert-语句">1.2. INSERT 语句</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">insert-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;INSERT&#34; &#34;INTO&#34; &lt;<span style="color:#a6e22e">table-name</span>&gt; [ &#34;(&#34; &lt;<span style="color:#a6e22e">column-list</span>&gt; &#34;)&#34; ] &#34;VALUES&#34; &#34;(&#34; &lt;<span style="color:#a6e22e">value-list</span>&gt; &#34;)&#34; &#34;;&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">column-list</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">column-name</span>&gt; { &#34;,&#34; &lt;<span style="color:#a6e22e">column-name</span>&gt; }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">value-list</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">value</span>&gt; { &#34;,&#34; &lt;<span style="color:#a6e22e">value</span>&gt; }
+</span></span></code></pre></div><h4 id="13-update-语句">1.3. UPDATE 语句</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">update-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;UPDATE&#34; &lt;<span style="color:#a6e22e">table-name</span>&gt; &#34;SET&#34; &lt;<span style="color:#a6e22e">column-name</span>&gt; &#34;=&#34; &lt;<span style="color:#a6e22e">value</span>&gt; { &#34;,&#34; &lt;<span style="color:#a6e22e">column-name</span>&gt; &#34;=&#34; &lt;<span style="color:#a6e22e">value</span>&gt; } [ &lt;<span style="color:#a6e22e">where-clause</span>&gt; ] &#34;;&#34;
+</span></span></code></pre></div><h4 id="14-delete-语句">1.4. DELETE 语句</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">delete-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;DELETE&#34; &#34;FROM&#34; &lt;<span style="color:#a6e22e">table-name</span>&gt; [ &lt;<span style="color:#a6e22e">where-clause</span>&gt; ] &#34;;&#34;
+</span></span></code></pre></div><h4 id="15-create-table-语句">1.5. CREATE TABLE 语句</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">create-table-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;CREATE&#34; &#34;TABLE&#34; &lt;<span style="color:#a6e22e">table-name</span>&gt; &#34;(&#34; &lt;<span style="color:#a6e22e">column-definition-list</span>&gt; &#34;)&#34; &#34;;&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">column-definition-list</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">column-definition</span>&gt; { &#34;,&#34; &lt;<span style="color:#a6e22e">column-definition</span>&gt; }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">column-definition</span>&gt; <span style="color:#f92672">::=</span> &lt;<span style="color:#a6e22e">column-name</span>&gt; &lt;<span style="color:#a6e22e">data-type</span>&gt; [ &lt;<span style="color:#a6e22e">column-options</span>&gt; ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">column-options</span>&gt; <span style="color:#f92672">::=</span> &#34;NOT&#34; &#34;NULL&#34; | &#34;UNIQUE&#34; | &#34;PRIMARY&#34; &#34;KEY&#34; | &#34;DEFAULT&#34; &lt;<span style="color:#a6e22e">default-value</span>&gt;
+</span></span></code></pre></div><h3 id="2-其他常见-sql-语句">2. 其他常见 SQL 语句</h3>
+<h4 id="21-create-database-语句">2.1. CREATE DATABASE 语句</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">create-database-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;CREATE&#34; &#34;DATABASE&#34; [ &#34;IF&#34; &#34;NOT&#34; &#34;EXISTS&#34; ] &lt;<span style="color:#a6e22e">database-name</span>&gt; &#34;;&#34;
+</span></span></code></pre></div><h4 id="22-drop-table-语句">2.2. DROP TABLE 语句</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bnf" data-lang="bnf"><span style="display:flex;"><span>&lt;<span style="color:#a6e22e">drop-table-statement</span>&gt; <span style="color:#f92672">::=</span> &#34;DROP&#34; &#34;TABLE&#34; &lt;<span style="color:#a6e22e">table-name</span>&gt; &#34;;&#34;
+</span></span></code></pre></div><h3 id="3-说明">3. 说明</h3>
+<ul>
+<li><strong>&lt;table-name&gt;</strong> , <strong>&lt;column-name&gt;</strong>、<strong>&lt;value&gt;</strong>、<strong>&lt;data-type&gt;</strong> 等是标识符或数据类型的占位符，具体定义可以根据需要进一步扩展。</li>
+<li><strong>&lt;condition&gt;</strong> 是一个条件表达式，可以是比较、逻辑运算等。</li>
+<li>这些 BNF 定义是简化的示例，实际的 SQL 标准可能会更复杂，具体取决于 SQL 标准的版本（如 SQL-92、SQL:1999、SQL:2003 等）。</li>
+</ul>
+<h3 id="4-注意事项">4. 注意事项</h3>
+<ul>
+<li>SQL 的 BNF 定义在不同的数据库管理系统中可能会有所不同，因此在使用时应参考具体数据库的文档。</li>
+<li>完整的 SQL 标准 BNF 定义通常在相关的 SQL 标准文档中提供。</li>
+</ul>
+<p>希望这些示例能帮助你理解 SQL 语句的基本结构！如果你有其他问题，请随时问我。</p><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/sql/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">sql</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://niuheshui.github.io/" >
+    &copy;  niuheshui.github.io 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
