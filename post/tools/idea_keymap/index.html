@@ -43,7 +43,7 @@
 <meta itemprop="name" content="Idea Key">
 <meta itemprop="description" content="Idea 按键映射备忘录"><meta itemprop="datePublished" content="2024-05-10T14:42:27+08:00" />
 <meta itemprop="dateModified" content="2024-05-10T14:42:27+08:00" />
-<meta itemprop="wordCount" content="176">
+<meta itemprop="wordCount" content="197">
 <meta itemprop="keywords" content="idea," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Idea Key"/>
 <meta name="twitter:description" content="Idea 按键映射备忘录"/>
 
@@ -144,9 +144,7 @@ ctrl+x 2 向右拆分
 ctrl+x 3 向下拆分
 alt+x 类似 vscode 的 ctrl+shift+p
 </code></pre><p>分割窗口中移动基于 IdeaVim 插件</p>
-<pre tabindex="0"><code class="language-vimscript" data-lang="vimscript">&#34; ~/.ideavimrc
-
-&#34;&#34; Source your .vimrc
+<pre tabindex="0"><code class="language-vimscript" data-lang="vimscript">&#34;&#34; Source your .vimrc
 &#34;source ~/.vimrc
 
 &#34;&#34; -- Suggested options --
@@ -156,9 +154,10 @@ set scrolloff=5
 
 &#34; Do incremental searching.
 set incsearch
+set hlsearch
 
 &#34; Don&#39;t use Ex mode, use Q for formatting.
-map Q gq
+map Q &lt;Nop&gt;
 
 
 &#34;&#34; -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
@@ -174,11 +173,23 @@ map Q gq
 
 &#34; Find more examples here: https://jb.gg/share-ideavimrc
 
-&#34; window 
+&#34; window
 nmap &lt;C-j&gt; &lt;C-W&gt;j
+nmap &lt;C-l&gt; &lt;C-W&gt;l
 nmap &lt;C-k&gt; &lt;C-W&gt;k
 nmap &lt;C-h&gt; &lt;C-W&gt;h
-nmap &lt;C-l&gt; &lt;C-W&gt;l
+
+
+&#34; v mod
+vmap &lt; &lt;gv
+vmap &gt; &gt;gv
+
+vmap &lt;S-j&gt; :move &#39;&gt;+1&lt;CR&gt;gv
+vmap &lt;S-k&gt; :move &#39;&lt;-2&lt;CR&gt;gv
+
+
+&#34; https://github.com/JetBrains/ideavim/blob/master/doc/NERDTree-support.md
+set NERDTree
 </code></pre><h4 id="关于-emacs-键绑定无法插入制表符">关于 Emacs 键绑定无法插入制表符</h4>
 <p>keymap -&gt; Editor Actions -&gt; Emacs Tab 删除映射</p>
 <p>keymap -&gt; Editor Actions -&gt; Tab 添加 Tab 按键映射</p>
