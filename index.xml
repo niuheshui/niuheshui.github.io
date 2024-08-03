@@ -303,11 +303,11 @@
       <description>&lt;p&gt;&lt;code&gt;nmcli&lt;/code&gt; 是用于控制 NetworkManager 的命令行工具。NetworkManager 是一个系统网络服务，用于管理各种类型的网络连接，包括以太网、Wi-Fi、VPN 等。&lt;code&gt;nmcli&lt;/code&gt; 允许用户通过命令行界面管理 NetworkManager 管理的网络连接，包括查看、创建、编辑、激活和停用连接。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>About</title>
+      <title>Before You Ask</title>
       <link>https://niuheshui.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://niuheshui.github.io/about/</guid>
-      <description>The Hunchback of Notre-Dame (French: Notre-Dame de Paris) is a French Romantic/Gothic novel by Victor Hugo, published in 1831. The original French title refers to Notre Dame Cathedral, on which the story is centered. English translator Frederic Shoberl named the novel The Hunchback of Notre Dame in 1833 because at the time, Gothic novels were more popular than Romance novels in England. The story is set in Paris, France in the Late Middle Ages, during the reign of Louis XI.</description>
+      <description>Before asking a technical question by e-mail, or in a newsgroup, or on a website chat board, do the following:&#xA;Try to find an answer by searching the archives of the forum or mailing list you plan to post to.&#xA;Try to find an answer by searching the Web.&#xA;Try to find an answer by reading the manual.&#xA;Try to find an answer by reading a FAQ.&#xA;Try to find an answer by inspection or experimentation.</description>
     </item>
   </channel>
 </rss>
